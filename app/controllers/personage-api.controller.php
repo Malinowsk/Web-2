@@ -20,23 +20,23 @@ class PersonageApiController {
         return json_decode($this->data);
     }
 
-    public function getPersonages($params = null) {
-        $tasks = $this->model->getAll();
-        $this->view->response($tasks);
+    public function getPersonages() {
+        $personages = $this->model->getAll();
+        $this->view->response($personages);
     }
-/*
-    public function getTask($params = null) {
+
+    public function getPersonage($params = null) {
         // obtengo el id del arreglo de params
         $id = $params[':ID'];
-        $task = $this->model->get($id);
+        $personage = $this->model->getPersonage($id);
 
         // si no existe devuelvo 404
-        if ($task)
-            $this->view->response($task);
+        if ($personage)
+            $this->view->response($personage);
         else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
-
+/*
     public function deleteTask($params = null) {
         $id = $params[':ID'];
 
