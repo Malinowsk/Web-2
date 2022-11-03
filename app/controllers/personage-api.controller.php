@@ -1,15 +1,15 @@
 <?php
-require_once './app/models/task.model.php';
+require_once './app/models/personage.model.php';
 require_once './app/views/api.view.php';
 
-class TaskApiController {
+class PersonageApiController {
     private $model;
     private $view;
 
     private $data;
 
     public function __construct() {
-        $this->model = new TaskModel();
+        $this->model = new PersonageModel();
         $this->view = new ApiView();
         
         // lee el body del request
@@ -20,11 +20,11 @@ class TaskApiController {
         return json_decode($this->data);
     }
 
-    public function getTasks($params = null) {
+    public function getPersonages($params = null) {
         $tasks = $this->model->getAll();
         $this->view->response($tasks);
     }
-
+/*
     public function getTask($params = null) {
         // obtengo el id del arreglo de params
         $id = $params[':ID'];
@@ -59,5 +59,5 @@ class TaskApiController {
             $this->view->response($task, 201);
         }
     }
-
+*/
 }
