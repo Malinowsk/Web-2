@@ -32,7 +32,7 @@ class PersonageModel {
         return $personage;
     }
 
-    public function getAllfilter($filter,$sort,$order,$pag) {
+    public function getAllfilter($filter,$sort,$order,$pag,$limit) {
         $str_query = "SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza";
         
         if($sort){
@@ -41,6 +41,17 @@ class PersonageModel {
             }
             if($order && strtoupper($order)=="DESC")
                 $str_query .= " DESC ";
+        }
+
+        if($pag){
+            if($limit == null){
+                $limit=4;
+            }
+            $str_query .= " limit $limit "; 
+            if ($pag <> 1){
+                $offset = ($limit * ($pag - 1));
+                $str_query .= " offset $offset ";
+            } 
         }
 
         $query = $this->db->prepare($str_query);

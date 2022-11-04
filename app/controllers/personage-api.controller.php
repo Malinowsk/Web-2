@@ -43,7 +43,12 @@ class PersonageApiController {
         else
             $filter=null;
 
-        $personages = $this->model->getAllfilter($filter,$sort,$order,$pag);
+        if(isset($_GET['limit']))
+            $limit=$_GET['limit'];
+        else
+            $limit=null;
+
+        $personages = $this->model->getAllfilter($filter,$sort,$order,$pag,$limit);
         if(isset($personages))
             $this->view->response($personages);
         else
