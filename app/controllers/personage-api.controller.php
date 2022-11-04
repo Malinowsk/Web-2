@@ -21,12 +21,38 @@ class PersonageApiController {
     }
 
     public function getPersonages() {
-        $personages = $this->model->getAll();
-        $this->view->response($personages);
+        if(isset($_GET['sort']))
+            $sort=$_GET['sort'];
+        else
+            $sort=null;
+        
+        //var_dump($sort);
+
+        if(isset($_GET['order']))
+            $order=$_GET['order'];
+        else
+            $order=null;
+        
+        if(isset($_GET['pag']))
+            $pag=$_GET['pag'];
+        else
+            $pag=null;
+
+        if(isset($_GET['filter']))
+            $filter=$_GET['filter'];
+        else
+            $filter=null;
+
+        $personages = $this->model->getAllfilter($filter,$sort,$order,$pag);
+        if(isset($personages))
+            $this->view->response($personages);
+        else
+            echo "error";
     }
 
     public function getPersonage($params = null) {
         // obtengo el id del arreglo de params
+
         $id = $params[':ID'];
         $personage = $this->model->getPersonage($id);
 
@@ -36,18 +62,18 @@ class PersonageApiController {
         else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
-/*
-    public function deleteTask($params = null) {
+
+    public function deletePersonage($params = null) {
         $id = $params[':ID'];
 
-        $task = $this->model->get($id);
-        if ($task) {
+        $personage = $this->model->getPersonage($id);
+        if ($personage) {
             $this->model->delete($id);
-            $this->view->response($task);
+            $this->view->response($personage);
         } else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
-
+/*
     public function insertTask($params = null) {
         $task = $this->getData();
 

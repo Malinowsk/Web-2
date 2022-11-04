@@ -8,7 +8,7 @@ $router = new Router();
 // defina la tabla de ruteo
 $router->addRoute('personages', 'GET', 'PersonageApiController', 'getPersonages');
 $router->addRoute('personage/:ID', 'GET', 'PersonageApiController', 'getPersonage');
-//$router->addRoute('tasks/:ID', 'DELETE', 'TaskApiController', 'deleteTask');
+$router->addRoute('personage/:ID', 'DELETE', 'PersonageApiController', 'deletePersonage');
 //$router->addRoute('tasks', 'POST', 'TaskApiController', 'insertTask'); 
 
 // ejecuta la ruta (sea cual sea)
