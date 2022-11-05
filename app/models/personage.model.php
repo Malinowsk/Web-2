@@ -4,14 +4,7 @@ class PersonageModel {
 
     private $db;
 
-    private $columns = array('id_personaje' => "id_personaje",
-        "nombre_p"=>"nombre_p",
-        "apellido"=>"apellido",
-        "clase"=>"clase",
-        "id_raza"=>"id_raza",
-        "nombre_r"=>"nombre_r",
-        "faccion"=>"faccion"
-    );
+   
 
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_juego;charset=utf8', 'root', '');
@@ -32,13 +25,19 @@ class PersonageModel {
         return $personage;
     }
 
-    public function getAllfilter($filter,$sort,$order,$pag,$limit) {
-        $str_query = "SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza";
-        
-        if($sort){
-            if(isset($this->columns[$sort])){
-                $str_query .= " order by $sort "; 
+    public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
+        $str_query = "SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza ";
+
+        $date_filter=null;
+        if($filter){
+            foreach ($filter as $clave=>$valor){
+                $str_query.= " WHERE $clave =  ? ";
+                $date_filter=$valor;
             }
+        }
+
+        if($sort){
+            $str_query .= " order by $sort "; 
             if($order && strtoupper($order)=="DESC")
                 $str_query .= " DESC ";
         }
@@ -55,7 +54,10 @@ class PersonageModel {
         }
 
         $query = $this->db->prepare($str_query);
-        $query->execute();
+        if ($date_filter)
+            $query->execute([$date_filter]);
+        else
+            $query->execute();
         // 3. obtengo los resultados
         $personage = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
         

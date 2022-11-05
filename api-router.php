@@ -9,7 +9,9 @@ $router = new Router();
 $router->addRoute('personages', 'GET', 'PersonageApiController', 'getPersonages');
 $router->addRoute('personage/:ID', 'GET', 'PersonageApiController', 'getPersonage');
 $router->addRoute('personage/:ID', 'DELETE', 'PersonageApiController', 'deletePersonage');
-//$router->addRoute('tasks', 'POST', 'TaskApiController', 'insertTask'); 
+$router->addRoute('personage', 'POST', 'PersonageApiController', 'insertPersonage'); 
 
 // ejecuta la ruta (sea cual sea)
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
+
+//devolver token
