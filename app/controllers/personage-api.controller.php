@@ -43,7 +43,7 @@ class PersonageApiController {
         $pag=null;
         $limit=null;
         
-        $this->obtenerDatosParaFiltar($filter,$sort,$order,$pag,$limit);
+        $this->getDataToFilter($filter,$sort,$order,$pag,$limit);
       
         $personages = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($personages))
@@ -53,7 +53,7 @@ class PersonageApiController {
     }
 
 
-    function obtenerDatosParaFiltar($filter,$sort,$order,$pag,$limit){
+    function getDataToFilter($filter,$sort,$order,$pag,$limit){
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))

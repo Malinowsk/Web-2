@@ -1,26 +1,20 @@
 <?php
-require_once './app/models/personage.model.php';
 require_once './app/models/race.model.php';
 require_once './app/views/api.view.php';
 
-class PersonageApiController {
+class RaceApiController {
     private $model;
-    private $model2;
     private $view;
 
     private $data;
 
-    private $columns = ['id_personaje' => "id_personaje",
-        "nombre_p"=>"nombre_p",
-        "apellido"=>"apellido",
-        "clase"=>"clase",
-        "id_raza"=>"id_raza",
-        "nombre_r"=>"nombre_r",
-        "faccion"=>"faccion"];
+    private $columns = 
+        ['id_raza' => "id_raza",
+        "nombre"=>"nombre",
+        "raza"=>"raza"];
 
     public function __construct() {
-        $this->model = new PersonageModel();
-        $this->model2 = new RaceModel();
+        $this->model = new RaceModel();
         $this->view = new ApiView();
         
         // lee el body del request
@@ -31,11 +25,8 @@ class PersonageApiController {
         return json_decode($this->data);
     }
 
-    function maching($var){
-        return isset($this->columns[$var]);
-    }
-
-    public function getPersonages() {
+    
+    public function getRaces() {
         
         $filter=null;
         $sort=null;
@@ -43,17 +34,20 @@ class PersonageApiController {
         $pag=null;
         $limit=null;
         
-        $this->obtenerDatosParaFiltar($filter,$sort,$order,$pag,$limit);
+        $this->getDataToFilter($filter,$sort,$order,$pag,$limit);
       
-        $personages = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
-        if(isset($personages))
-            $this->view->response($personages);
+        $races = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
+        if(isset($races))
+            $this->view->response($races);
         else
-            echo "error";
+            $this->view->response("error del server", 500);
+    }
+        
+    function maching($var){
+        return isset($this->columns[$var]);
     }
 
-
-    function obtenerDatosParaFiltar($filter,$sort,$order,$pag,$limit){
+    function getDataToFilter($filter,$sort,$order,$pag,$limit){
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
@@ -97,45 +91,45 @@ class PersonageApiController {
 
     }
 
-    public function getPersonage($params = null) {
+    public function getRace($params = null) {
         // obtengo el id del arreglo de params
 
         $id = $params[':ID'];
-        $personage = $this->model->getPersonage($id);
+        $Race = $this->model->getRace($id);
 
         // si no existe devuelvo 404
-        if ($personage)
-            $this->view->response($personage);
+        if ($race)
+            $this->view->response($race);
         else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
 
-    public function deletePersonage($params = null) {
+    public function deleteRace($params = null) {
         $id = $params[':ID'];
 
-        $personage = $this->model->getPersonage($id);
-        if ($personage) {
+        $race = $this->model->getRace($id);
+        if ($race) {
             $this->model->delete($id);
-            $this->view->response($personage);
+            $this->view->response($race);
         } else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
 
-    public function insertPersonage($params = null) {
-        $Personage = $this->getData();
+    public function insertRace($params = null) {
+        $Race = $this->getData();
 
-        if (empty($Personage->nombre_p) || empty($Personage->apellido) || empty($Personage->clase) || empty($Personage->id_raza)) {
+        if (empty($Race->nombre_p) || empty($Race->apellido) || empty($Race->clase) || empty($Race->id_raza)) {
             $this->view->response("Complete los datos", 400);
         } else {
-            $existRace=$this->model2->getRace($Personage->id_raza);
+            $existRace=$this->model2->getRace($Race->id_raza);
             if(count($existRace)==0){
                 $this->view->response("La raza del personaje que desea ingresar no existe", 404);
             }
             else{
-                $id = $this->model->insert($Personage->nombre_p, $Personage->apellido, $Personage->clase, $Personage->id_raza);
+                $id = $this->model->insert($Race->nombre_p, $Race->apellido, $Race->clase, $Race->id_raza);
                 if ($id <> 0){
-                    $Personage = $this->model->getPersonage($id);
-                    $this->view->response($Personage, 201);}
+                    $Race = $this->model->getRace($id);
+                    $this->view->response($Race, 201);}
                 else{
                     $this->view->response("No se pudo insertar el personaje", 500);
                 }
