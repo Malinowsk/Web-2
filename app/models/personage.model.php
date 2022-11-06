@@ -4,25 +4,18 @@ class PersonageModel {
 
     private $db;
 
-   
+    private $columns = 
+    ['id_personaje' => "p.id_personaje",
+    "nombre_p"=>"p.nombre",
+    "apellido"=>"p.apellido",
+    "clase"=>"p.clase",
+    "id_raza"=>"p.id_raza",
+    "nombre_r"=>"r.nombre",
+    "faccion"=>"r.faccion"];
+    
 
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_juego;charset=utf8', 'root', '');
-    }
-
-    /**
-     * Devuelve la lista de personajes completa.
-     */
-    public function getAll() {
-
-        $query = $this->db->prepare("SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza");
-        //select * from personaje join raza on personaje.id_raza = raza.id_raza;
-        $query->execute();
-
-        // 3. obtengo los resultados
-        $personage = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
-        
-        return $personage;
     }
 
     public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
@@ -31,6 +24,7 @@ class PersonageModel {
         $date_filter=null;
         if($filter){
             foreach ($filter as $clave=>$valor){
+                $clave=$this->columns[$clave];
                 $str_query.= " WHERE $clave =  ? ";
                 $date_filter=$valor;
             }
@@ -64,51 +58,15 @@ class PersonageModel {
         return $personage;
     }
 
-    public function getPersonageWithRace($id){
-        
-        $query = $this->db->prepare("SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza WHERE id_personaje=?");
-        //select * from personaje join raza on personaje.id_raza = raza.id_raza;
-        $query->execute([$id]);
-
-        // 3. obtengo los resultados
-        $personage = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
-        
-        return $personage;
-    }
-
     public function getPersonage($id){
         
         $query = $this->db->prepare("SELECT * from personaje WHERE id_personaje=?");
-        //select * from personaje join raza on personaje.id_raza = raza.id_raza;
         $query->execute([$id]);
 
         // 3. obtengo los resultados
         $personage = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
         
         return $personage;
-    }
-
-    public function getOneRacePersonagesComplete($id){
-        
-        $query = $this->db->prepare("SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza WHERE p.id_raza=?");
-        //select * from personaje join raza on personaje.id_raza = raza.id_raza;
-        $query->execute([$id]);
-
-        // 3. obtengo los resultados
-        $personages = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
-        
-        return $personages;
-    }
-    //getPersonages($id)
-    public function getOneRacePersonages($id){
-        $query = $this->db->prepare("SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza from personaje p WHERE p.id_raza=?");
-        //select * from personaje join raza on personaje.id_raza = raza.id_raza;
-        $query->execute([$id]);
-
-        // 3. obtengo los resultados
-        $personages = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
-        
-        return $personages;
     }
 
     /**

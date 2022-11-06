@@ -10,7 +10,8 @@ class PersonageApiController {
 
     private $data;
 
-    private $columns = ['id_personaje' => "id_personaje",
+    private $columns = 
+        ['id_personaje' => "id_personaje",
         "nombre_p"=>"nombre_p",
         "apellido"=>"apellido",
         "clase"=>"clase",
