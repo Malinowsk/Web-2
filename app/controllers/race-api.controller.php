@@ -35,7 +35,7 @@ class RaceApiController {
         $limit=null;
         
         $this->getDataToFilter($filter,$sort,$order,$pag,$limit);
-      
+       
         $races = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($races))
             $this->view->response($races);
@@ -47,7 +47,7 @@ class RaceApiController {
         return isset($this->columns[$var]);
     }
 
-    function getDataToFilter($filter,$sort,$order,$pag,$limit){
+    function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
@@ -67,7 +67,6 @@ class RaceApiController {
             }
         else
             $sort=null;
-
 
         if(isset($_GET['order'])){
             $order=$_GET['order'];
@@ -91,11 +90,13 @@ class RaceApiController {
 
     }
 
+    
+
     public function getRace($params = null) {
         // obtengo el id del arreglo de params
 
         $id = $params[':ID'];
-        $Race = $this->model->getRace($id);
+        $race = $this->model->getRace($id);
 
         // si no existe devuelvo 404
         if ($race)

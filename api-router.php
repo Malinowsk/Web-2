@@ -1,6 +1,7 @@
 <?php
 require_once './libs/Router.php';
 require_once './app/controllers/personage-api.controller.php';
+require_once './app/controllers/race-api.controller.php';
 
 // crea el router
 $router = new Router();
@@ -14,7 +15,7 @@ $router->addRoute('personage', 'POST', 'PersonageApiController', 'insertPersonag
 $router->addRoute('races', 'GET', 'RaceApiController', 'getRaces');
 $router->addRoute('race/:ID', 'GET', 'RaceApiController', 'getRace');
 $router->addRoute('race/:ID', 'DELETE', 'RaceApiController', 'deleteRace');
-$router->addRoute('race', 'POST', 'RaceApiController', 'insertRace'); 
+//$router->addRoute('race', 'POST', 'RaceApiController', 'insertRace'); 
 
 // ejecuta la ruta (sea cual sea)
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);

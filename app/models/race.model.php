@@ -22,6 +22,44 @@ class RaceModel {
         return $race;
     }
 
+    public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
+        $str_query = "SELECT * FROM raza ";
+        var_dump($pag);
+        $date_filter=null;
+        if($filter){
+            foreach ($filter as $clave=>$valor){
+                $str_query.= " WHERE $clave =  ? ";
+                $date_filter=$valor;
+            }
+        }
+
+        if($sort){
+            $str_query .= " order by $sort "; 
+            if($order && strtoupper($order)=="DESC")
+                $str_query .= " DESC ";
+        }
+
+        if($pag){
+            if($limit == null){
+                $limit=4;
+            }
+            $str_query .= " limit $limit "; 
+            if ($pag <> 1){
+                $offset = ($limit * ($pag - 1));
+                $str_query .= " offset $offset ";
+            } 
+        }
+
+        $query = $this->db->prepare($str_query);
+        if ($date_filter)
+            $query->execute([$date_filter]);
+        else
+            $query->execute();
+        // 3. obtengo los resultados
+        $personage = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        
+        return $personage;
+    }
      
     public function insert($name, $faccion) {
         $query = $this->db->prepare("INSERT INTO raza (nombre, faccion) VALUES (?, ?)");

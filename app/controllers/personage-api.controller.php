@@ -53,7 +53,7 @@ class PersonageApiController {
     }
 
 
-    function getDataToFilter($filter,$sort,$order,$pag,$limit){
+    function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
