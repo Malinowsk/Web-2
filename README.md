@@ -72,9 +72,8 @@ Se permite cualquier combinacion de paginación , ordenamiento y filtrado posibl
 
 Algunos Ejemplos son:
 
-GET   api/personages?
-GET   api/personages?
-GET   api/personages?
+GET   api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2
+GET   api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3
 
 No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:
 
@@ -99,7 +98,7 @@ Servicio para agregar un personaje(item)
 
 POST   api/personage
 
-*los datos del personaje a agregar se enbian por el body del request, correspondiente a un json
+*los datos del personaje a agregar se envian por el body del request, correspondiente a un json
 
 Algunos Ejemplos:
 

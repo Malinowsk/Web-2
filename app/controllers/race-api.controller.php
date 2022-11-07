@@ -11,7 +11,7 @@ class RaceApiController {
     private $columns = 
         ['id_raza' => "id_raza",
         "nombre"=>"nombre",
-        "raza"=>"raza"];
+        "faccion"=>"faccion"];
 
     public function __construct() {
         $this->model = new RaceModel();
