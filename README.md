@@ -201,14 +201,12 @@ Se permite cualquier combinacion de paginación , ordenamiento y filtrado posibl
 
 Algunos Ejemplos son:
 
-GET   api/races?
-GET   api/races?
-GET   api/races?
+GET   api/races?faccion=horda&sort=id_raza&order=asc&pag=2&limit=2
 
 No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:
 
-GET   api/races?
-GET   api/races?
+GET   api/races?faccion=alianza&sort=id_raza&order=desc&pag=1&limit=4
+GET   api/races?pag=1&limit=4&sort=id_raza&order=desc&faccion=alianza
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -240,7 +238,7 @@ POST   api/race
         }
 
          {
-            "nombre_p": "Goglin",
+            "nombre": "Goglin",
             "faccion": "Alianza"
         }
 
@@ -262,5 +260,4 @@ falta hacer:
     token,
     acomodar primera parte,
     llenar bbdd,
-    importar bbdd,
-    mejorar los errores 400 200 500
+    importar bbdd
