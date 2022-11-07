@@ -79,7 +79,12 @@ class RaceApiController {
             $order=null;
         
         if(isset($_GET['pag']))
-            $pag=$_GET['pag'];
+            if(is_numeric($_GET['pag']))
+                $pag=$_GET['pag'];
+            else{
+                $this->view->response("el valor de página es incorrecto", 404);
+                die;
+            }
         else
             $pag=null;
 
@@ -119,23 +124,18 @@ class RaceApiController {
     public function insertRace($params = null) {
         $Race = $this->getData();
 
-        if (empty($Race->nombre_p) || empty($Race->apellido) || empty($Race->clase) || empty($Race->id_raza)) {
+        if (empty($Race->nombre) || empty($Race->faccion)) {
             $this->view->response("Complete los datos", 400);
         } else {
-            $existRace=$this->model2->getRace($Race->id_raza);
-            if(count($existRace)==0){
-                $this->view->response("La raza del personaje que desea ingresar no existe", 404);
-            }
+            $id = $this->model->insert($Race->nombre, $Race->faccion);
+            if ($id <> 0){
+                $Race = $this->model->getRace($id);
+                $this->view->response($Race, 201);}
             else{
-                $id = $this->model->insert($Race->nombre_p, $Race->apellido, $Race->clase, $Race->id_raza);
-                if ($id <> 0){
-                    $Race = $this->model->getRace($id);
-                    $this->view->response($Race, 201);}
-                else{
-                    $this->view->response("No se pudo insertar el personaje", 500);
-                }
+                $this->view->response("No se pudo insertar el personaje", 500);
             }
         }
+
     }
 
 }

@@ -48,9 +48,12 @@ class PersonageApiController {
       
         $personages = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($personages))
-            $this->view->response($personages);
+//            if(!empty($personages))
+                $this->view->response($personages);
+//            else
+//                $this->view->response("el contenido de la respuesta es vacio", 402);
         else
-            echo "error";
+        $this->view->response("error del server", 500);
     }
 
 
@@ -78,16 +81,21 @@ class PersonageApiController {
 
         if(isset($_GET['order'])){
             $order=$_GET['order'];
-            if($order<>"desc" && $order<>"asc"){
-                $this->view->response("el valor de order es incorrecto", 404);
-                die;
-            }
+                if($order<>"desc" && $order<>"asc"){
+                    $this->view->response("el valor de order es incorrecto", 404);
+                    die;
+                }
+
         }
         else
             $order=null;
         
         if(isset($_GET['pag']))
-            $pag=$_GET['pag'];
+            if(is_numeric($_GET['pag']))
+                $pag=$_GET['pag'];
+            else{
+                $this->view->response("el valor que se quiere paginar es incorrecto", 404);
+                die;}
         else
             $pag=null;
 
@@ -142,6 +150,10 @@ class PersonageApiController {
                 }
             }
         }
+    }
+
+    public function showNotFoundPage() {
+        $this->view->response("Url mal definida", 404);
     }
 
 }

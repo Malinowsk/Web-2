@@ -258,3 +258,10 @@ DELETE   api/race/3
 DELETE   api/race/5
 
 --------------------------------------------------------------------------------------------------------------------
+
+falta hacer:
+    token,
+    acomodar primera parte,
+    llenar bbdd,
+    importar bbdd,
+    mejorar los errores 400 200 500
