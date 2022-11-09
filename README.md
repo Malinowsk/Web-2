@@ -99,6 +99,7 @@ Servicio para agregar un personaje(item)
 POST   api/personage
 
 *los datos del personaje a agregar se envian por el body del request, correspondiente a un json
+*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
 
 Algunos Ejemplos:
 
@@ -121,6 +122,8 @@ POST   api/personage
 --------------------------------------------------------------------------------------------------------------------
 
 Servicio para borrar un personaje(item) 
+
+*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
 
 POST   api/personage/:ID
 
@@ -227,6 +230,7 @@ Servicio para agregar un personaje(item)
 POST   api/race
 
 *los datos de la raza a agregar se envian por el body del request, correspondiente a un json
+*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
 
 Algunos Ejemplos:
 
@@ -246,6 +250,8 @@ POST   api/race
 
 Servicio para borrar un personaje(item) 
 
+*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
+
 POST   api/race/:ID
 
 Algunos Ejemplos:
@@ -256,8 +262,10 @@ DELETE   api/race/5
 
 --------------------------------------------------------------------------------------------------------------------
 
-falta hacer:
-    token,
-    acomodar primera parte,
-    llenar bbdd,
-    importar bbdd
+Servicio de generar y pedir token
+
+GET api/auth/token
+
+se enviar la autenticación del tipo "Basic Auth" con los datos de Username "juanrago@gmail.com" y password "12345"
+
+--------------------------------------------------------------------------------------------------------------------

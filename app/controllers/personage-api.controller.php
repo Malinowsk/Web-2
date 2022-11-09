@@ -2,11 +2,13 @@
 require_once './app/models/personage.model.php';
 require_once './app/models/race.model.php';
 require_once './app/views/api.view.php';
+require_once './app/helpers/auth-api.helper.php';
 
 class PersonageApiController {
-    private $model;
-    private $model2;
+    private $model_personaje;
+    private $model_race;
     private $view;
+    private $helper;
 
     private $data;
 
@@ -20,10 +22,11 @@ class PersonageApiController {
         "faccion"=>"faccion"];
 
     public function __construct() {
-        $this->model = new PersonageModel();
-        $this->model2 = new RaceModel();
+        $this->model_personaje = new PersonageModel();
+        $this->model_race = new RaceModel();
         $this->view = new ApiView();
-        
+        $this->helper = new AuthApiHelper();
+
         // lee el body del request
         $this->data = file_get_contents("php://input");
     }
@@ -46,7 +49,7 @@ class PersonageApiController {
         
         $this->getDataToFilter($filter,$sort,$order,$pag,$limit);
       
-        $personages = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
+        $personages = $this->model_personaje->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($personages))
 //            if(!empty($personages))
                 $this->view->response($personages);
@@ -110,7 +113,7 @@ class PersonageApiController {
         // obtengo el id del arreglo de params
 
         $id = $params[':ID'];
-        $personage = $this->model->getPersonage($id);
+        $personage = $this->model_personaje->getPersonage($id);
 
         // si no existe devuelvo 404
         if ($personage)
@@ -120,30 +123,42 @@ class PersonageApiController {
     }
 
     public function deletePersonage($params = null) {
+
+        if(!this->helper->isLoggedIn()){
+            this->view->response("No estás logeado", 401);   
+            die;
+        }
+
         $id = $params[':ID'];
 
-        $personage = $this->model->getPersonage($id);
+        $personage = $this->model_personaje->getPersonage($id);
         if ($personage) {
-            $this->model->delete($id);
+            $this->model_personaje->delete($id);
             $this->view->response($personage);
         } else 
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
 
     public function insertPersonage($params = null) {
+        
+        if(!this->helper->isLoggedIn()){
+            this->view->response("No estás logeado", 401);   
+            die;
+        }
+
         $Personage = $this->getData();
 
         if (empty($Personage->nombre_p) || empty($Personage->apellido) || empty($Personage->clase) || empty($Personage->id_raza)) {
             $this->view->response("Complete los datos", 400);
         } else {
-            $existRace=$this->model2->getRace($Personage->id_raza);
+            $existRace=$this->model_race->getRace($Personage->id_raza);
             if(count($existRace)==0){
                 $this->view->response("La raza del personaje que desea ingresar no existe", 404);
             }
             else{
-                $id = $this->model->insert($Personage->nombre_p, $Personage->apellido, $Personage->clase, $Personage->id_raza);
+                $id = $this->model_personaje->insert($Personage->nombre_p, $Personage->apellido, $Personage->clase, $Personage->id_raza);
                 if ($id <> 0){
-                    $Personage = $this->model->getPersonage($id);
+                    $Personage = $this->model_personaje->getPersonage($id);
                     $this->view->response($Personage, 201);}
                 else{
                     $this->view->response("No se pudo insertar el personaje", 500);

@@ -1,10 +1,12 @@
 <?php
 require_once './app/models/race.model.php';
 require_once './app/views/api.view.php';
+require_once './app/helpers/auth-api.helper.php';
 
 class RaceApiController {
     private $model;
     private $view;
+    private $helper;
 
     private $data;
 
@@ -16,6 +18,7 @@ class RaceApiController {
     public function __construct() {
         $this->model = new RaceModel();
         $this->view = new ApiView();
+        $this->helper = new AuthApiHelper();
         
         // lee el body del request
         $this->data = file_get_contents("php://input");
@@ -111,6 +114,12 @@ class RaceApiController {
     }
 
     public function deleteRace($params = null) {
+
+        if(!this->helper->isLoggedIn()){
+            this->view->response("No estás logeado", 401);   
+            die;
+        }
+
         $id = $params[':ID'];
 
         $race = $this->model->getRace($id);
@@ -122,6 +131,12 @@ class RaceApiController {
     }
 
     public function insertRace($params = null) {
+
+        if(!$this->helper->isLoggedIn()){
+            $this->view->response("No estás logeado", 401);
+            die;
+        }
+
         $Race = $this->getData();
 
         if (empty($Race->nombre) || empty($Race->faccion)) {

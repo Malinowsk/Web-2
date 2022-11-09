@@ -1,5 +1,5 @@
 <?php
-//require_once './app/models/task.model.php';
+require_once './app/models/user.model.php';
 require_once './app/views/api.view.php';
 require_once './app/helpers/auth-api.helper.php';
 
@@ -16,7 +16,7 @@ class AuthApiController {
     private $data;
 
     public function __construct() {
-        //$this->model = new TaskModel();
+        $this->model = new UserModel();
         $this->view = new ApiView();
         $this->authHelper = new AuthApiHelper();
         
@@ -48,22 +48,22 @@ class AuthApiController {
         $user = $userpass[0];
         $pass = $userpass[1];
 
+        $record=$this->model->getUserByEmail($user);
 
-
-        if($user == "Nico" && $pass == "web"){
+        if($record && $user == $record->email && password_verify($pass,$record->password)){
             //  crear un token
             $header = array(
                 'alg' => 'HS256',
                 'typ' => 'JWT'
             );
             $payload = array(
-                'id' => 1,
-                'name' => "Nico",
+                'id' => "1",
+                'name' => "Juan",
                 'exp' => time()+3600
             );
             $header = base64url_encode(json_encode($header));
             $payload = base64url_encode(json_encode($payload));
-            $signature = hash_hmac('SHA256', "$header.$payload", "Clave1ertertertet234", true);
+            $signature = hash_hmac('SHA256', "$header.$payload", "Clave1234", true);
             $signature = base64url_encode($signature);
             $token = "$header.$payload.$signature";
              $this->view->response($token);
