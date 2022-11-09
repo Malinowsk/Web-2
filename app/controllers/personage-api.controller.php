@@ -13,13 +13,19 @@ class PersonageApiController {
     private $data;
 
     private $columns = 
-        ['id_personaje' => "id_personaje",
-        "nombre_p"=>"nombre_p",
-        "apellido"=>"apellido",
-        "clase"=>"clase",
-        "id_raza"=>"id_raza",
-        "nombre_r"=>"nombre_r",
-        "faccion"=>"faccion"];
+                            ["id_personaje" =>  "id_personaje",
+                            "nombre_p"=>"nombre_p",
+                            "apellido"=>"apellido",
+                            "clase"=>"clase",
+                            "id_raza"=>"id_raza",
+                            "nombre_r"=>"nombre_r",
+                            "faccion"=>"faccion"];
+
+    private $keywords = ["resource" => "resource",
+                        "sort"=>"resource",
+                        "order"=>"resource",
+                        "pag"=>"resource",
+                        "limit"=>"resource"];
 
     public function __construct() {
         $this->model_personaje = new PersonageModel();
@@ -58,9 +64,22 @@ class PersonageApiController {
         else
         $this->view->response("error del server", 500);
     }
+    
+    function correctFilters(){
+        foreach ($_GET as $clave=>$valor){
+            if(!isset($this->columns[$clave])&&!isset($this->keywords[$clave])){
+                return False;}
+        }
+        return true;
+    }
 
 
     function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
+
+        if(!$this->correctFilters()){
+            $this->view->response("El nombre de alguno de los filtros en la URL no es correcto", 404);
+            die;
+        }
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
@@ -124,8 +143,8 @@ class PersonageApiController {
 
     public function deletePersonage($params = null) {
 
-        if(!this->helper->isLoggedIn()){
-            this->view->response("No estás logeado", 401);   
+        if(!$this->helper->isLoggedIn()){
+            $this->view->response("No estás logeado", 401);   
             die;
         }
 
@@ -141,8 +160,8 @@ class PersonageApiController {
 
     public function insertPersonage($params = null) {
         
-        if(!this->helper->isLoggedIn()){
-            this->view->response("No estás logeado", 401);   
+        if(!$this->helper->isLoggedIn()){
+            $this->view->response("No estás logeado", 401);   
             die;
         }
 

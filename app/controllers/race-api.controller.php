@@ -15,6 +15,12 @@ class RaceApiController {
         "nombre"=>"nombre",
         "faccion"=>"faccion"];
 
+        private $keywords = ["resource" => "resource",
+        "sort"=>"resource",
+        "order"=>"resource",
+        "pag"=>"resource",
+        "limit"=>"resource"];
+
     public function __construct() {
         $this->model = new RaceModel();
         $this->view = new ApiView();
@@ -50,7 +56,20 @@ class RaceApiController {
         return isset($this->columns[$var]);
     }
 
+    function correctFilters(){
+        foreach ($_GET as $clave=>$valor){
+            if(!isset($this->columns[$clave])&&!isset($this->keywords[$clave])){
+                return False;}
+        }
+        return true;
+    }
+
     function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
+
+        if(!$this->correctFilters()){
+            $this->view->response("El nombre de alguno de los filtros en la URL no es correcto", 404);
+            die;
+        }
 
         $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
@@ -115,8 +134,8 @@ class RaceApiController {
 
     public function deleteRace($params = null) {
 
-        if(!this->helper->isLoggedIn()){
-            this->view->response("No estás logeado", 401);   
+        if(!$this->helper->isLoggedIn()){
+            $this->view->response("No estás logeado", 401);   
             die;
         }
 
