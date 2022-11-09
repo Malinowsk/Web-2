@@ -1,175 +1,40 @@
 <?php
-require_once './app/models/race.model.php';
-require_once './app/views/api.view.php';
-require_once './app/helpers/auth-api.helper.php';
 
-class RaceApiController {
-    private $model;
-    private $view;
-    private $helper;
+require_once './app/controllers/table-api.controller.php';
 
-    private $data;
 
-    private $columns = 
-        ['id_raza' => "id_raza",
-        "nombre"=>"nombre",
-        "faccion"=>"faccion"];
-
-        private $keywords = ["resource" => "resource",
-        "sort"=>"resource",
-        "order"=>"resource",
-        "pag"=>"resource",
-        "limit"=>"resource"];
+class RaceApiController extends ApiController {
 
     public function __construct() {
-        $this->model = new RaceModel();
-        $this->view = new ApiView();
-        $this->helper = new AuthApiHelper();
-        
-        // lee el body del request
-        $this->data = file_get_contents("php://input");
+
+        parent::__construct();
+
+        $this->columns=  ['id_raza' => "id_raza",
+                          "nombre"=>"nombre",
+                          "faccion"=>"faccion"];
     }
 
-    private function getData() {
-        return json_decode($this->data);
+    public function getAllFiltered($filter,$sort,$order,$pag,$limit){
+        return $this->model_race->getAllFiltered($filter,$sort,$order,$pag,$limit);
     }
 
-    
-    public function getRaces() {
-        
-        $filter=null;
-        $sort=null;
-        $order=null;
-        $pag=null;
-        $limit=null;
-        
-        $this->getDataToFilter($filter,$sort,$order,$pag,$limit);
-       
-        $races = $this->model->getAllFiltered($filter,$sort,$order,$pag,$limit);
-        if(isset($races))
-            $this->view->response($races);
-        else
-            $this->view->response("error del server", 500);
-    }
-        
-    function maching($var){
-        return isset($this->columns[$var]);
+    public function getTupla($id){
+        return $this->model_race->getRace($id);
     }
 
-    function correctFilters(){
-        foreach ($_GET as $clave=>$valor){
-            if(!isset($this->columns[$clave])&&!isset($this->keywords[$clave])){
-                return False;}
-        }
-        return true;
+    public function deleteTupla($id){
+        $this->model_race->delete($id);
     }
 
-    function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
 
-        if(!$this->correctFilters()){
-            $this->view->response("El nombre de alguno de los filtros en la URL no es correcto", 404);
-            die;
-        }
-
-        $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
-        if(empty($filter)&&isset($filter))
-            $filter=null;
-        else
-            if(count($filter)>1){
-                $this->view->response("no se puede filtrar por mas de un campo", 404);
-                die;
-            }
-
-        if(isset($_GET['sort']))
-            if(isset($this->columns[$_GET['sort']]))
-                $sort=$_GET['sort'];
-            else{
-                $this->view->response("el campo por el que se quiere ordenar no existe en la tabla", 404);
-                die;
-            }
-        else
-            $sort=null;
-
-        if(isset($_GET['order'])){
-            $order=$_GET['order'];
-            if($order<>"desc" && $order<>"asc"){
-                $this->view->response("el valor de order es incorrecto", 404);
-                die;
-            }
-        }
-        else
-            $order=null;
-        
-        if(isset($_GET['pag']))
-            if(is_numeric($_GET['pag']))
-                $pag=$_GET['pag'];
-            else{
-                $this->view->response("el valor de página es incorrecto", 404);
-                die;
-            }
-        else
-            $pag=null;
-
-        if(isset($_GET['limit']))
-            $limit=$_GET['limit'];
-        else
-            $limit=null;
-
-    }
-
-    
-
-    public function getRace($params = null) {
-        // obtengo el id del arreglo de params
-
-        $id = $params[':ID'];
-        $race = $this->model->getRace($id);
-
-        // si no existe devuelvo 404
-        if ($race)
-            $this->view->response($race);
-        else 
-            $this->view->response("La tarea con el id=$id no existe", 404);
-    }
-
-    public function deleteRace($params = null) {
-
-        if(!$this->helper->isLoggedIn()){
-            $this->view->response("No estás logeado", 401);   
-            die;
-        }
-
-        $id = $params[':ID'];
-
-        $race = $this->model->getRace($id);
-        if ($race) {
-            $this->model->delete($id);
-            $this->view->response($race);
-        } else 
-            $this->view->response("La tarea con el id=$id no existe", 404);
-    }
-
-    public function insertRace($params = null) {
-
-        if(!$this->helper->isLoggedIn()){
-            $this->view->response("No estás logeado", 401);
-            die;
-        }
-
-        $Race = $this->getData();
-
+    public function chekeo($Race){
         if (empty($Race->nombre) || empty($Race->faccion)) {
             $this->view->response("Complete los datos", 400);
-        } else {
-            $id = $this->model->insert($Race->nombre, $Race->faccion);
-            if ($id <> 0){
-                $Race = $this->model->getRace($id);
-                $this->view->response($Race, 201);}
-            else{
-                $this->view->response("No se pudo insertar el personaje", 500);
-            }
+            die;
         }
-
     }
-
+    
+    public function insertTupla($Race){
+        return $this->model_race->insert($Race->nombre, $Race->faccion);
+    }
 }

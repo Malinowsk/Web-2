@@ -9,15 +9,15 @@ require_once './app/controllers/auth-api.controller.php';
 $router = new Router();
 
 // defina la tabla de ruteo
-$router->addRoute('personages', 'GET', 'PersonageApiController', 'getPersonages');
-$router->addRoute('personage/:ID', 'GET', 'PersonageApiController', 'getPersonage');
-$router->addRoute('personage/:ID', 'DELETE', 'PersonageApiController', 'deletePersonage');
-$router->addRoute('personage', 'POST', 'PersonageApiController', 'insertPersonage'); 
+$router->addRoute('personages', 'GET', 'PersonageApiController', 'getAll');
+$router->addRoute('personage/:ID', 'GET', 'PersonageApiController', 'get');
+$router->addRoute('personage/:ID', 'DELETE', 'PersonageApiController', 'delete');
+$router->addRoute('personage', 'POST', 'PersonageApiController', 'insert'); 
 
-$router->addRoute('races', 'GET', 'RaceApiController', 'getRaces');
-$router->addRoute('race/:ID', 'GET', 'RaceApiController', 'getRace');
-$router->addRoute('race/:ID', 'DELETE', 'RaceApiController', 'deleteRace');
-$router->addRoute('race', 'POST', 'RaceApiController', 'insertRace'); 
+$router->addRoute('races', 'GET', 'RaceApiController', 'getAll');
+$router->addRoute('race/:ID', 'GET', 'RaceApiController', 'get');
+$router->addRoute('race/:ID', 'DELETE', 'RaceApiController', 'delete');
+$router->addRoute('race', 'POST', 'RaceApiController', 'insert'); 
 
 $router->addRoute("auth/token", 'GET', 'AuthApiController', 'getToken');
 
