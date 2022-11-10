@@ -12,7 +12,7 @@ Devuelve todos los personajes(items)
 * GET   api/personages    
 
 --------------------------------------------------------------------------------------------------------------------
-##### Ordenamiento:
+### **Ordenamiento**:
 
 Devuelve todos los personajes(items) ordenados por columna con un determinado valor
 
@@ -33,7 +33,7 @@ Ejemplo:
 * GET   api/personages?sort=clase&order=desc
 
 --------------------------------------------------------------------------------------------------------------------
-##### Paginación:
+### **Paginación**:
 
 Devuelve, de todos los personajes(items), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4
 
