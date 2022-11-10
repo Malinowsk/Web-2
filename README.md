@@ -14,20 +14,20 @@ Devuelve todos los personajes(items)
 --------------------------------------------------------------------------------------------------------------------
 ### **Ordenamiento**:
 
-Devuelve todos los personajes(items) ordenados por columna con un determinado valor
+*Devuelve todos los personajes(items) ordenados por columna con un determinado valor*
 
 * GET   api/personages?sort=NOMBREDECOLUMNA
 
-Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion 
+**Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion**
 
-Devuelve todos los personajes(items) ordenados por nombre de los personajes, de forma ascendente
+*Devuelve todos los personajes(items) ordenados por nombre de los personajes, de forma ascendente*
 
 Algunos Ejemplos:
 
 * GET   api/personages?sort=nombre_p
 * GET   api/personages?sort=nombre_p&order=asc
 
-Devuelve todos los personajes(items) ordenados por la clase de los personajes, de forma descendente
+*Devuelve todos los personajes(items) ordenados por la clase de los personajes, de forma descendente*
 
 Ejemplo:
 * GET   api/personages?sort=clase&order=desc
@@ -35,17 +35,17 @@ Ejemplo:
 --------------------------------------------------------------------------------------------------------------------
 ### **Paginación**:
 
-Devuelve, de todos los personajes(items), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4
+*Devuelve, de todos los personajes(items), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
 
 * GET   api/personages?pag=NUMERODEPAGINA
 
-Devuelve, de todos los personajes(items), una página con un tamaño de pagina igual a 4 (lo toma por defecto)
+*Devuelve, de todos los personajes(items), una página con un tamaño de pagina igual a 4 (lo toma por defecto)*
 
 Ejemplos:
 * GET   api/personages?pag=2
 * GET   api/personages?pag=3
 
-Devuelve, de todos los personajes(items), una página con un tamaño de pagina determino
+*Devuelve, de todos los personajes(items), una página con un tamaño de pagina determino*
 
 Ejemplos:
 * GET   api/personages?pag=1&limit=8
@@ -54,11 +54,11 @@ Ejemplos:
 --------------------------------------------------------------------------------------------------------------------
 ##### Filtrado:
 
-Devuelve todos los personajes(items) filtrados por un valor de una columna dada
+*Devuelve todos los personajes(items) filtrados por un valor de una columna dada*
 
 * GET   api/personages?nombredecolumna=VALORAFILTRAR
 
-Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion 
+**Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion** 
 
 Algunos Ejemplos:
 * GET   api/personages?id_personaje=2
@@ -66,25 +66,25 @@ Algunos Ejemplos:
 * GET   api/personages?id_raza=2
 * GET   api/personages?faccion=Alianza
 
-Aclaración: no se puede filtrar por más de un campo a la vez
+**Aclaración: no se puede filtrar por más de un campo a la vez**
 
 --------------------------------------------------------------------------------------------------------------------
 
-Se permite cualquier combinación de paginación , ordenamiento y filtrado posible
+**Se permite cualquier combinación de paginación , ordenamiento y filtrado posible**
 
 Algunos Ejemplos son:
 
 * GET api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2
 - GET api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3
 
-No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:
+*No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
 
 * GET   api/personages?faccion=horda&sort=id_personaje&order=desc&pag=2&limit=2
 * GET   api/personages?order=desc&sort=id_personaje&pag=2&limit=2&faccion=horda
 
 --------------------------------------------------------------------------------------------------------------------
 
-Devuelve un personaje(item) determinado por un ID 
+*Devuelve un personaje(item) determinado por un ID* 
 
 * GET   api/personage/:ID
 
@@ -96,12 +96,12 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Servicio para agregar un personaje(item) 
+*Servicio para agregar un personaje(item)* 
 
 * POST   api/personage
 
-*los datos del personaje a agregar se envian por el body del request, correspondiente a un json
-*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
+**los datos del personaje a agregar se envian por el body del request, correspondiente a un json*
+**se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token*
 
 Algunos Ejemplos:
 
@@ -123,9 +123,9 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Servicio para borrar un personaje(item) 
+**Servicio para borrar un personaje(item)** 
 
-*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
+**se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 * POST   api/personage/:ID
 
@@ -137,7 +137,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Endpoints Generados para la tabla Raza:
+### Endpoints Generados para la tabla Raza:
 
 --------------------------------------------------------------------------------------------------------------------
 
