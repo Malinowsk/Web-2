@@ -52,7 +52,7 @@ Ejemplos:
 * GET   api/personages?pag=3&limit=2
 
 --------------------------------------------------------------------------------------------------------------------
-##### Filtrado:
+### **Filtrado**:
 
 *Devuelve todos los personajes(items) filtrados por un valor de una columna dada*
 
@@ -123,7 +123,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio para borrar un personaje(item)** 
+*Servicio para borrar un personaje(item)**
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
