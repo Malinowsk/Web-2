@@ -13,7 +13,6 @@ class PersonageModel {
     "nombre_r"=>"r.nombre",
     "faccion"=>"r.faccion"];
     
-
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_juego;charset=utf8', 'root', '');
     }
@@ -78,7 +77,6 @@ class PersonageModel {
         
         return $this->db->lastInsertId();
     }
-
 
     /**
      * Elimina un personaje dado su id.

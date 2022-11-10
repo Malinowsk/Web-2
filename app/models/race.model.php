@@ -8,7 +8,6 @@ class RaceModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_juego;charset=utf8', 'root', '');
     }
 
-
     public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
         $str_query = "SELECT * FROM raza ";
         

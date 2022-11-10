@@ -1,36 +1,23 @@
 <?php
 require_once './app/models/user.model.php';
-require_once './app/views/api.view.php';
-require_once './app/helpers/auth-api.helper.php';
+require_once './app/controllers/api.controller.php';
 
 function base64url_encode($data) {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 
-
-class AuthApiController {
+class AuthApiController extends Controller {
     private $model;
-    private $view;
-    private $authHelper;
-
-    private $data;
 
     public function __construct() {
-        $this->model = new UserModel();
-        $this->view = new ApiView();
-        $this->authHelper = new AuthApiHelper();
-        
-        // lee el body del request
-        $this->data = file_get_contents("php://input");
-    }
+        parent::__construct();
 
-    private function getData() {
-        return json_decode($this->data);
+        $this->model = new UserModel();
     }
 
     public function getToken($params = null) {
         // Obtener "Basic base64(user:pass)
-        $basic = $this->authHelper->getAuthHeader();
+        $basic = $this->helper->getAuthHeader();
     
         if(empty($basic)){
             $this->view->response('No autorizado', 401);

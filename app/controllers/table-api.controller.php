@@ -1,9 +1,8 @@
 <?php
 require_once './app/models/race.model.php';
-require_once './app/views/api.view.php';
-require_once './app/helpers/auth-api.helper.php';
+require_once './app/controllers/api.controller.php';
 
-abstract class ApiController
+abstract class ApiController extends Controller
 {
 
     protected $model_race;
@@ -19,18 +18,12 @@ abstract class ApiController
                         "pag"=>"resource",
                         "limit"=>"resource"];
 
-
     function __construct()
     {
-        $this->model_race = new RaceModel();
-        $this->view = new ApiView();
-        $this->helper = new AuthApiHelper();
-        $this->data = file_get_contents('php://input');
-    }
+        parent::__construct();
 
-    function getData()
-    {
-        return json_decode($this->data);
+        $this->model_race = new RaceModel();
+
     }
 
     function maching($var){
@@ -169,7 +162,6 @@ abstract class ApiController
         }
 
     }
-
 
     public function isLoggedIn(){
         if(!$this->helper->isLoggedIn()){
