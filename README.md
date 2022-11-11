@@ -7,11 +7,11 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-Devuelve todos los personajes(items) 
+**Devuelve todos los personajes(items)**
 
 * GET   api/personages    
 
---------------------------------------------------------------------------------------------------------------------
+
 ### **Ordenamiento**:
 
 *Devuelve todos los personajes(items) ordenados por columna con un determinado valor*
@@ -84,7 +84,7 @@ Algunos Ejemplos son:
 
 --------------------------------------------------------------------------------------------------------------------
 
-*Devuelve un personaje(item) determinado por un ID* 
+**Devuelve un personaje(item) determinado por un ID**
 
 * GET   api/personage/:ID
 
@@ -96,7 +96,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-*Servicio para agregar un personaje(item)* 
+**Servicio para agregar un personaje(item)** 
 
 * POST   api/personage
 
@@ -123,7 +123,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-*Servicio para borrar un personaje(item)**
+**Servicio para borrar un personaje(item)**
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
@@ -146,76 +146,76 @@ Devuelve todos las razas(categorias)
 * GET   api/races
 
 --------------------------------------------------------------------------------------------------------------------
-##### Ordenamiento:
+### **Ordenamiento**:
 
-Devuelve todos las razas(categorias) ordenados por un campo de alguna columna
+*Devuelve todos las razas(categorias) ordenados por un campo de alguna columna*
 
 * GET   api/races?sort=NOMBREDECOLUMNA
 
 Los nombres de columnas a elegir son : id_raza - nombre - faccion
 
-Devuelve todos las razas(categorias) ordenados por nombre de raza, de forma ascendente
+*Devuelve todos las razas(categorias) ordenados por nombre de raza, de forma ascendente*
 
 Algunos Ejemplos:
 * GET   api/races?sort=nombre
 * GET   api/races?sort=nombre&order=asc
 
-Devuelve todos las razas(categorias) ordenados por id de raza, de forma descendente
+*Devuelve todos las razas(categorias) ordenados por id de raza, de forma descendente*
 
 ejemplos:
 * GET   api/races?sort=id_raza&order=desc
 
 --------------------------------------------------------------------------------------------------------------------
-Paginación:
+### **Paginación**:
 
-Devuelve, de todos las razas(categorias), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4
+*Devuelve, de todos las razas(categorias), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
 
 * GET   api/races?pag=NUMERODEPAGINA
 
-Devuelve, de todos las razas(categorias), una página con un tamaño de pagina igual a 4 (lo toma por defecto)
+*Devuelve, de todos las razas(categorias), una página con un tamaño de pagina igual a 4 (lo toma por defecto)*
 
 ejemplos:
 * GET   api/races?pag=2
 * GET   api/races?pag=3
 
-Devuelve, de todos las razas(categorias), una página con un tamaño de pagina determino
+*Devuelve, de todos las razas(categorias), una página con un tamaño de pagina determino*
 
 ejemplos:
 * GET   api/races?pag=1&limit=8
 * GET   api/races?pag=3&limit=2
 
 --------------------------------------------------------------------------------------------------------------------
-Filtrado:
+### **Filtrado**:
 
-Devuelve todos las razas(categorias) filtrados por un valor de una columna dada
+*Devuelve todos las razas(categorias) filtrados por un valor de una columna dada*
 
 * GET   api/races?nombredecolumna=VALORAFILTRAR
 
-Los nombres de columnas a elegir son : id_raza - nombre - faccion
+**Los nombres de columnas a elegir son : id_raza - nombre - faccion**
 
 Algunos Ejemplos:
 * GET   api/races?id_raza=2
 * GET   api/races?nombre=Elfo
 * GET   api/races?faccion=Alianza
 
-Aclaracion: no se puede filtrar por mas de un campo a la vez
+**Aclaracion: no se puede filtrar por mas de un campo a la vez**
 
 --------------------------------------------------------------------------------------------------------------------
 
-Se permite cualquier combinacion de paginación , ordenamiento y filtrado posible
+**Se permite cualquier combinacion de paginación , ordenamiento y filtrado posible**
 
 Algunos Ejemplos son:
 
 * GET   api/races?faccion=horda&sort=id_raza&order=asc&pag=2&limit=2
 
-No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:
+*No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
 
 * GET   api/races?faccion=alianza&sort=id_raza&order=desc&pag=1&limit=4
 * GET   api/races?pag=1&limit=4&sort=id_raza&order=desc&faccion=alianza
 
 --------------------------------------------------------------------------------------------------------------------
 
-Devuelve una raza(categoria) determinado por un ID 
+**Devuelve una raza(categoria) determinado por un ID** 
 
 * GET   api/race/:ID
 
@@ -227,12 +227,12 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Servicio para agregar un personaje(item) 
+**Servicio para agregar un personaje(item)** 
 
 POST   api/race
 
-*los datos de la raza a agregar se envian por el body del request, correspondiente a un json
-*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
+**los datos de la raza a agregar se envian por el body del request, correspondiente a un json*
+**se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 Algunos Ejemplos:
 
@@ -250,9 +250,9 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Servicio para borrar un personaje(item) 
+**Servicio para borrar un personaje(item)** 
 
-*se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token 
+**se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 * POST   api/race/:ID
 
@@ -264,10 +264,10 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Servicio de generar y pedir token
+**Servicio de generar y pedir token**
 
 * GET api/auth/token
 
-se enviar la autenticación del tipo "Basic Auth" con los datos de Username "juanrago@gmail.com" y password "12345"
+Se envía la autenticación del tipo "Basic Auth" con los datos de Username "juanrago@gmail.com" y password "12345"
 
 --------------------------------------------------------------------------------------------------------------------
