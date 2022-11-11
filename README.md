@@ -7,12 +7,12 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Devuelve todos los personajes(items)**
+### Devuelve todos los personajes(items)
 
 * GET   api/personages    
 
 
-### **Ordenamiento**:
+#### **Ordenamiento**:
 
 *Devuelve todos los personajes(items) ordenados por columna con un determinado valor*
 
@@ -33,7 +33,7 @@ Ejemplo:
 * GET   api/personages?sort=clase&order=desc
 
 --------------------------------------------------------------------------------------------------------------------
-### **Paginación**:
+#### **Paginación**:
 
 *Devuelve, de todos los personajes(items), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
 
@@ -52,7 +52,7 @@ Ejemplos:
 * GET   api/personages?pag=3&limit=2
 
 --------------------------------------------------------------------------------------------------------------------
-### **Filtrado**:
+#### **Filtrado**:
 
 *Devuelve todos los personajes(items) filtrados por un valor de una columna dada*
 
@@ -84,7 +84,7 @@ Algunos Ejemplos son:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Devuelve un personaje(item) determinado por un ID**
+### Devuelve un personaje(item) determinado por un ID
 
 * GET   api/personage/:ID
 
@@ -96,7 +96,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio para agregar un personaje(item)** 
+### Servicio para agregar un personaje(item)
 
 * POST   api/personage
 
@@ -123,7 +123,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio para borrar un personaje(item)**
+### Servicio para borrar un personaje(item)
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
@@ -141,12 +141,12 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-Devuelve todos las razas(categorias) 
+### Devuelve todos las razas(categorias) 
 
 * GET   api/races
 
 --------------------------------------------------------------------------------------------------------------------
-### **Ordenamiento**:
+#### **Ordenamiento**:
 
 *Devuelve todos las razas(categorias) ordenados por un campo de alguna columna*
 
@@ -166,7 +166,7 @@ ejemplos:
 * GET   api/races?sort=id_raza&order=desc
 
 --------------------------------------------------------------------------------------------------------------------
-### **Paginación**:
+#### **Paginación**:
 
 *Devuelve, de todos las razas(categorias), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
 
@@ -185,7 +185,7 @@ ejemplos:
 * GET   api/races?pag=3&limit=2
 
 --------------------------------------------------------------------------------------------------------------------
-### **Filtrado**:
+#### **Filtrado**:
 
 *Devuelve todos las razas(categorias) filtrados por un valor de una columna dada*
 
@@ -215,7 +215,7 @@ Algunos Ejemplos son:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Devuelve una raza(categoria) determinado por un ID** 
+### Devuelve una raza(categoria) determinado por un ID
 
 * GET   api/race/:ID
 
@@ -227,7 +227,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio para agregar un personaje(item)** 
+### Servicio para agregar un personaje(item)
 
 POST   api/race
 
@@ -250,7 +250,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio para borrar un personaje(item)** 
+### Servicio para borrar un personaje(item)
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
@@ -264,7 +264,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Servicio de generar y pedir token**
+### Servicio de generar y pedir token
 
 * GET api/auth/token
 
