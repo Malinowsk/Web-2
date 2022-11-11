@@ -111,21 +111,22 @@ Algunos Ejemplos:
 Algunos Ejemplos:
 
 * POST ```  api/personage ```
-
+```
         {
             "nombre_p": "Malfurion",
             "apellido": "Tempestira",
             "clase": "Druida",
             "id_raza": 6
         }
-
+```
+```
         {
             "nombre_p": "Sylvanas",
             "apellido": "Brisaveloz",
             "clase": "Arquera",
             "id_raza": 6
         }
-
+```
 --------------------------------------------------------------------------------------------------------------------
 
 ### Servicio para borrar un personaje(item)
@@ -248,11 +249,12 @@ Algunos Ejemplos:
             "faccion": "Horda"
         }
 ```
+```
         {
             "nombre": "Goglin",
             "faccion": "Alianza"
         }
-
+```
 --------------------------------------------------------------------------------------------------------------------
 
 ### Servicio para borrar un personaje(item)
