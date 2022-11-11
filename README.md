@@ -9,68 +9,68 @@
 
 #### Devuelve todos los personajes(items)
 
-* GET   api/personages    
+* GET   ```api/personages  ```  
 
 --------------------------------------------------------------------------------------------------------------------
 
 #### **Ordenamiento**:
 
 *Devuelve todos los personajes(items) ordenados por columna con un determinado valor*
-```
-* GET   api/personages?sort=NOMBREDECOLUMNA
-```
+
+* GET   ``` api/personages?sort=NOMBREDECOLUMNA ```
+
 **Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion**
 
 *Devuelve todos los personajes(items) ordenados por nombre de los personajes, de forma ascendente*
 
 Algunos Ejemplos:
-```
-* GET   api/personages?sort=nombre_p
-* GET   api/personages?sort=nombre_p&order=asc
-```
+
+* GET ```   api/personages?sort=nombre_p ```
+* GET ```  api/personages?sort=nombre_p&order=asc ```
+
 *Devuelve todos los personajes(items) ordenados por la clase de los personajes, de forma descendente*
 
 Ejemplo:
-```
-* GET   api/personages?sort=clase&order=desc
-```
+
+* GET ```  api/personages?sort=clase&order=desc ```
+
 --------------------------------------------------------------------------------------------------------------------
 #### **Paginación**:
 
 *Devuelve, de todos los personajes(items), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
-```
-* GET   api/personages?pag=NUMERODEPAGINA
-```
+
+* GET  ``` api/personages?pag=NUMERODEPAGINA ```
+
 *Devuelve, de todos los personajes(items), una página con un tamaño de pagina igual a 4 (lo toma por defecto)*
 
 Ejemplos:
-```
-* GET   api/personages?pag=2
-* GET   api/personages?pag=3
-```
+
+* GET ```  api/personages?pag=2 ```
+* GET ```  api/personages?pag=3 ```
+
 *Devuelve, de todos los personajes(items), una página con un tamaño de pagina determino*
 
 Ejemplos:
-```
-* GET   api/personages?pag=1&limit=8
-* GET   api/personages?pag=3&limit=2
-```
+
+* GET  ``` api/personages?pag=1&limit=8 ```
+* GET  ``` api/personages?pag=3&limit=2 ```
+
 --------------------------------------------------------------------------------------------------------------------
 #### **Filtrado**:
 
 *Devuelve todos los personajes(items) filtrados por un valor de una columna dada*
-```
-* GET   api/personages?nombredecolumna=VALORAFILTRAR
-```
+
+* GET ```  api/personages?nombredecolumna=VALORAFILTRAR ```
+
 **Los nombres de columnas a elegir son : id_personaje - nombre_p - apellido - clase - id_raza - nombre_r - faccion** 
 
 Algunos Ejemplos:
-```
-* GET   api/personages?id_personaje=2
-* GET   api/personages?clase=Guerrero
-* GET   api/personages?id_raza=2
-* GET   api/personages?faccion=Alianza
-```
+
+* GET ```  api/personages?id_personaje=2 ```
+* GET ```  api/personages?clase=Guerrero ```
+* GET ```  api/personages?id_raza=2 ```
+* GET ```  api/personages?faccion=Alianza ```
+
 **Aclaración: no se puede filtrar por más de un campo a la vez**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -78,15 +78,15 @@ Algunos Ejemplos:
 **Se permite cualquier combinación de paginación , ordenamiento y filtrado posible**
 
 Algunos Ejemplos son:
-```
-* GET api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2
-- GET api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3
-```
+
+* GET ``` api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2 ```
+- GET ``` api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
+
 *No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
-```
-* GET   api/personages?faccion=horda&sort=id_personaje&order=desc&pag=2&limit=2
-* GET   api/personages?order=desc&sort=id_personaje&pag=2&limit=2&faccion=horda
-```
+
+* GET ```  api/personages?faccion=horda&sort=id_personaje&order=desc&pag=2&limit=2 ```
+* GET ```  api/personages?order=desc&sort=id_personaje&pag=2&limit=2&faccion=horda ```
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Devuelve un personaje(item) determinado por un ID
