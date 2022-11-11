@@ -1,18 +1,19 @@
 # TRABAJO PRÁCTICO ESPECIAL PARTE 2:
 
-## API
+## API RESTful
 --------------------------------------------------------------------------------------------------------------------
 
 ### Endpoints Generados para la tabla Personaje:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Devuelve todos los personajes(items)
+#### Devuelve todos los personajes(items)
 
 * GET   api/personages    
 
+--------------------------------------------------------------------------------------------------------------------
 
-#### **Ordenamiento**:
+##### **Ordenamiento**:
 
 *Devuelve todos los personajes(items) ordenados por columna con un determinado valor*
 
