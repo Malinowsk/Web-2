@@ -277,6 +277,9 @@ Algunos Ejemplos:
 
 * GET ``` api/auth/token ```
 
-Se envía la autenticación del tipo "Basic Auth" con los datos de Username "juanrago@gmail.com" y password "12345"
+Se envía la autenticación del tipo "Basic Auth" con los datos de:
+
+* Username ``` juanrago@gmail.com ```
+* Password ``` 12345 ```
 
 --------------------------------------------------------------------------------------------------------------------
