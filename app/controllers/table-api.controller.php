@@ -2,7 +2,7 @@
 require_once './app/models/race.model.php';
 require_once './app/controllers/api.controller.php';
 
-abstract class ApiController extends Controller
+abstract class TableApiController extends ApiController
 {
 
     protected $model_race;

@@ -6,7 +6,7 @@ function base64url_encode($data) {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 
-class AuthApiController extends Controller {
+class AuthApiController extends ApiController {
     private $model;
 
     public function __construct() {

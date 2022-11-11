@@ -20,13 +20,9 @@ class PersonageModel {
     public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
         $str_query = "SELECT p.id_personaje, p.nombre as nombre_p, p.apellido, p.clase, p.id_raza, r.nombre as nombre_r , r.faccion from personaje p join raza r on r.id_raza = p.id_raza ";
 
-        $date_filter=null;
         if($filter){
-            foreach ($filter as $clave=>$valor){
-                $clave=$this->columns[$clave];
-                $str_query.= " WHERE $clave =  ? ";
-                $date_filter=$valor;
-            }
+            $clave=key($filter);
+            $str_query.= " WHERE $clave =  ? ";
         }
 
         if($sort){
@@ -47,8 +43,8 @@ class PersonageModel {
         }
 
         $query = $this->db->prepare($str_query);
-        if ($date_filter)
-            $query->execute([$date_filter]);
+        if ($filter)
+            $query->execute([$filter[$clave]]);
         else
             $query->execute();
         // 3. obtengo los resultados

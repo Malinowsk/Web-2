@@ -3,7 +3,7 @@
 require_once './app/controllers/table-api.controller.php';
 
 
-class RaceApiController extends ApiController {
+class RaceApiController extends TableApiController {
 
     public function __construct() {
 

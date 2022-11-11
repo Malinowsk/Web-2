@@ -2,7 +2,7 @@
 require_once './app/models/personage.model.php';
 require_once './app/controllers/table-api.controller.php';
 
-class PersonageApiController extends ApiController {
+class PersonageApiController extends TableApiController {
     private $model_personaje;
 
     public function __construct() {

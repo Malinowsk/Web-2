@@ -3,7 +3,7 @@
 require_once './app/views/api.view.php';
 require_once './app/helpers/auth-api.helper.php';
 
-abstract class Controller
+abstract class ApiController
 {
     protected $view;
     protected $helper;

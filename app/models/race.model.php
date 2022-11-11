@@ -11,13 +11,9 @@ class RaceModel {
     public function getAllFiltered($filter,$sort,$order,$pag,$limit) {
         $str_query = "SELECT * FROM raza ";
         
-        $date_filter=null;
         if($filter){
-            foreach ($filter as $clave=>$valor){
-                $str_query.= " WHERE $clave =  ? ";
-                $date_filter=$valor;
-            }
-        
+            $clave=key($filter);
+            $str_query.= " WHERE $clave =  ? ";
         }
 
         if($sort){
@@ -38,8 +34,8 @@ class RaceModel {
         }
 
         $query = $this->db->prepare($str_query);
-        if ($date_filter)
-            $query->execute([$date_filter]);
+        if ($filter)
+            $query->execute([$filter[$clave]]);
         else
             $query->execute();
         // 3. obtengo los resultados
