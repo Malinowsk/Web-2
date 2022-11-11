@@ -82,7 +82,7 @@ Algunos Ejemplos son:
 * GET ``` api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2 ```
 * GET ``` api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
 
-*No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
+*No importa el orden de las condiciones en las que se pongan, dan el mismo resultado:*
 
 * GET ```  api/personages?faccion=horda&sort=id_personaje&order=desc&pag=2&limit=2 ```
 * GET ```  api/personages?order=desc&sort=id_personaje&pag=2&limit=2&faccion=horda ```
@@ -213,7 +213,7 @@ Algunos Ejemplos son:
 
 * GET ```  api/races?faccion=horda&sort=id_raza&order=asc&pag=2&limit=2 ```
 
-*No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
+*No importa el orden de las condiciones en las que se pongan, dan el mismo resultado:*
 
 * GET  ``` api/races?faccion=alianza&sort=id_raza&order=desc&pag=1&limit=4 ```
 * GET  ``` api/races?pag=1&limit=4&sort=id_raza&order=desc&faccion=alianza ```
@@ -242,13 +242,13 @@ POST ```  api/race ```
 Algunos Ejemplos:
 
 * POST ```  api/race ```
-
+```
         {
             "nombre": "Centauros",
             "faccion": "Horda"
         }
-
-         {
+```
+        {
             "nombre": "Goglin",
             "faccion": "Alianza"
         }
