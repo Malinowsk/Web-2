@@ -80,7 +80,7 @@ Algunos Ejemplos:
 Algunos Ejemplos son:
 
 * GET ``` api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2 ```
-- GET ``` api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
+* GET ``` api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
 
 *No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
 
@@ -91,26 +91,26 @@ Algunos Ejemplos son:
 
 ### Devuelve un personaje(item) determinado por un ID
 
-* GET   api/personage/:ID
+* GET  ``` api/personage/:ID ```
 
 Algunos Ejemplos:
 
-* GET   api/personage/1
-* GET   api/personage/13
-* GET   api/personage/5
+* GET ```  api/personage/1 ```
+* GET ```  api/personage/13 ```
+* GET ```  api/personage/5 ```
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Servicio para agregar un personaje(item)
 
-* POST   api/personage
+* POST ```  api/personage ```
 
 **los datos del personaje a agregar se envian por el body del request, correspondiente a un json*
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token*
 
 Algunos Ejemplos:
 
-* POST   api/personage
+* POST ```  api/personage ```
 
         {
             "nombre_p": "Malfurion",
@@ -119,7 +119,7 @@ Algunos Ejemplos:
             "id_raza": 6
         }
 
-         {
+        {
             "nombre_p": "Sylvanas",
             "apellido": "Brisaveloz",
             "clase": "Arquera",
@@ -132,13 +132,13 @@ Algunos Ejemplos:
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
-* POST   api/personage/:ID
+* POST ```  api/personage/:ID ```
 
 Algunos Ejemplos:
 
-* DELETE   api/personage/1
-* DELETE   api/personage/13
-* DELETE   api/personage/5
+* DELETE ```  api/personage/1 ```
+* DELETE ```  api/personage/13 ```
+* DELETE ```  api/personage/5 ```
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -148,60 +148,60 @@ Algunos Ejemplos:
 
 #### Devuelve todos las razas(categorias) 
 
-* GET   api/races
+* GET  ``` api/races ```
 
 --------------------------------------------------------------------------------------------------------------------
 #### **Ordenamiento**:
 
 *Devuelve todos las razas(categorias) ordenados por un campo de alguna columna*
 
-* GET   api/races?sort=NOMBREDECOLUMNA
+* GET ```  api/races?sort=NOMBREDECOLUMNA ```
 
 Los nombres de columnas a elegir son : id_raza - nombre - faccion
 
 *Devuelve todos las razas(categorias) ordenados por nombre de raza, de forma ascendente*
 
 Algunos Ejemplos:
-* GET   api/races?sort=nombre
-* GET   api/races?sort=nombre&order=asc
+* GET ```  api/races?sort=nombre ```
+* GET  ``` api/races?sort=nombre&order=asc ```
 
 *Devuelve todos las razas(categorias) ordenados por id de raza, de forma descendente*
 
 ejemplos:
-* GET   api/races?sort=id_raza&order=desc
+* GET ```  api/races?sort=id_raza&order=desc ```
 
 --------------------------------------------------------------------------------------------------------------------
 #### **Paginación**:
 
 *Devuelve, de todos las razas(categorias), una página con un determino tamaño que se le puede indicar y que por defecto es limit=4*
 
-* GET   api/races?pag=NUMERODEPAGINA
+* GET ```  api/races?pag=NUMERODEPAGINA ```
 
 *Devuelve, de todos las razas(categorias), una página con un tamaño de pagina igual a 4 (lo toma por defecto)*
 
 ejemplos:
-* GET   api/races?pag=2
-* GET   api/races?pag=3
+* GET ```  api/races?pag=2 ```
+* GET  ``` api/races?pag=3 ```
 
 *Devuelve, de todos las razas(categorias), una página con un tamaño de pagina determino*
 
 ejemplos:
-* GET   api/races?pag=1&limit=8
-* GET   api/races?pag=3&limit=2
+* GET ```  api/races?pag=1&limit=8 ```
+* GET  ``` api/races?pag=3&limit=2 ```
 
 --------------------------------------------------------------------------------------------------------------------
 #### **Filtrado**:
 
 *Devuelve todos las razas(categorias) filtrados por un valor de una columna dada*
 
-* GET   api/races?nombredecolumna=VALORAFILTRAR
+* GET ```  api/races?nombredecolumna=VALORAFILTRAR ```
 
 **Los nombres de columnas a elegir son : id_raza - nombre - faccion**
 
 Algunos Ejemplos:
-* GET   api/races?id_raza=2
-* GET   api/races?nombre=Elfo
-* GET   api/races?faccion=Alianza
+* GET ```  api/races?id_raza=2 ```
+* GET ```  api/races?nombre=Elfo ```
+* GET ```  api/races?faccion=Alianza ```
 
 **Aclaracion: no se puede filtrar por mas de un campo a la vez**
 
@@ -211,37 +211,37 @@ Algunos Ejemplos:
 
 Algunos Ejemplos son:
 
-* GET   api/races?faccion=horda&sort=id_raza&order=asc&pag=2&limit=2
+* GET ```  api/races?faccion=horda&sort=id_raza&order=asc&pag=2&limit=2 ```
 
 *No importa el orden de las condiciones de las que se pongan, dan el mismo resultado:*
 
-* GET   api/races?faccion=alianza&sort=id_raza&order=desc&pag=1&limit=4
-* GET   api/races?pag=1&limit=4&sort=id_raza&order=desc&faccion=alianza
+* GET  ``` api/races?faccion=alianza&sort=id_raza&order=desc&pag=1&limit=4 ```
+* GET  ``` api/races?pag=1&limit=4&sort=id_raza&order=desc&faccion=alianza ```
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Devuelve una raza(categoria) determinado por un ID
 
-* GET   api/race/:ID
+* GET ```  api/race/:ID ```
 
 Algunos Ejemplos:
 
-* GET   api/race/1
-* GET   api/race/3
-* GET   api/race/5
+* GET ```  api/race/1 ```
+* GET ```  api/race/3 ```
+* GET ```  api/race/5 ```
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Servicio para agregar un personaje(item)
 
-POST   api/race
+POST ```  api/race ```
 
 **los datos de la raza a agregar se envian por el body del request, correspondiente a un json*
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 Algunos Ejemplos:
 
-* POST   api/race
+* POST ```  api/race ```
 
         {
             "nombre": "Centauros",
@@ -259,19 +259,19 @@ Algunos Ejemplos:
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
-* POST   api/race/:ID
+* POST ```  api/race/:ID ```
 
 Algunos Ejemplos:
 
-* DELETE   api/race/1
-* DELETE   api/race/3
-* DELETE   api/race/5
+* DELETE ```  api/race/1 ```
+* DELETE ```  api/race/3 ```
+* DELETE ```  api/race/5 ```
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Servicio de generar y pedir token
 
-* GET api/auth/token
+* GET ``` api/auth/token ```
 
 Se envía la autenticación del tipo "Basic Auth" con los datos de Username "juanrago@gmail.com" y password "12345"
 
