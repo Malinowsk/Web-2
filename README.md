@@ -239,6 +239,7 @@ Algunos Ejemplos:
 * POST ```  api/race ```
 
 **Los datos de la raza a agregar se envian por el body del request, correspondiente a un json*
+
 **Se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 Algunos Ejemplos:
