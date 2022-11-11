@@ -236,10 +236,10 @@ Algunos Ejemplos:
 
 ### Servicio para agregar un personaje(item)
 
-POST ```  api/race ```
+* POST ```  api/race ```
 
-**los datos de la raza a agregar se envian por el body del request, correspondiente a un json*
-**se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
+**Los datos de la raza a agregar se envian por el body del request, correspondiente a un json*
+**Se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
 Algunos Ejemplos:
 
