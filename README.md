@@ -12,14 +12,26 @@
         - [Paginación](#paginación)
         - [Filtrado](#filtrado)
         - [Combinado](#Se-permite-cualquier-combinación)
-
+    - [Obtener por ID](#devuelve-un-personajeitem-determinado-por-un-id)
+    - [Insertado](#servicio-para-agregar-un-personajeitem)
+    - [Borrado](#servicio-para-borrar-un-personajeitem)
+- [Tabla de Razas](#endpoints-generados-para-la-tabla-raza)
+    - [Obtener todas](#devuelve-todos-las-razascategorias)
+        - [Ordenamiento](#ordenamiento)
+        - [Paginación](#paginación)
+        - [Filtrado](#filtrado)
+        - [Combinado](#Se-permite-cualquier-combinación)
+    - [Obtener por ID](#devuelve-una-razacategoria-determinado-por-un-id)
+    - [Insertado](#servicio-para-agregar-una-razaitem)
+    - [Borrado](#servicio-para-borrar-una-razaitem)
+- [Pedir Token](#servicio-de-generar-y-pedir-token)
 
 --------------------------------------------------------------------------------------------------------------------
 
 <h3 align="center">Diagrama de clases de controladores</h3>
 
 <div align="center">
-<img src="diag.png"/>
+<img src="Images/diag.png"/>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -27,7 +39,7 @@
 <h3 align="center">Diagrama de clases de modelos</h3>
 
 <div align="center">
-<img src="diag.png"/>
+<img src="Images/diag.png"/>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -108,8 +120,8 @@ Algunos Ejemplos:
 
 Algunos Ejemplos son:
 
-* GET ``` api/personages?api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2 ```
-* GET ``` api/personages?api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
+* GET ``` api/personages?id_raza=4&sort=id_personaje&order=desc&pag=2&limit=2 ```
+* GET ``` api/personages?faccion=alianza&sort=id_personaje&order=asc&pag=2&limit=3 ```
 
 *No importa el orden de las condiciones en las que se pongan, dan el mismo resultado:*
 
@@ -263,7 +275,7 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Servicio para agregar un personaje(item)
+### Servicio para agregar una raza(item)
 
 * POST ```  api/race ```
 
@@ -288,7 +300,7 @@ Algunos Ejemplos:
 ```
 --------------------------------------------------------------------------------------------------------------------
 
-### Servicio para borrar un personaje(item)
+### Servicio para borrar una raza(item)
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
