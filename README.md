@@ -1,9 +1,8 @@
 # TRABAJO PRÁCTICO ESPECIAL PARTE 2:
 
 ## API RESTful
---------------------------------------------------------------------------------------------------------------------
 
-<h3 align="center">Indice</h3>
+<h2 align="center">Indice</h2>
 
 - [Diagrama de Clases de Controladores](#diagrama-de-clases-de-controladores)
 - [Diagrama de Clases de modelos](#diagrama-de-clases-de-modelos)
