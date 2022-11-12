@@ -6,7 +6,7 @@
 ### Diagrama de clases:
 
 <div align="center">
-<img src="diagrama_controlles.jpg"/>
+<img src="diag.png"/>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
