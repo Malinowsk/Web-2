@@ -4,7 +4,7 @@ require_once './app/views/api.view.php';
 require_once './app/helpers/auth-api.helper.php';
 require_once './app/constantes/constantes.php';
 
-abstract class ApiController
+class ApiController
 {
     protected $view;
     protected $helper;
