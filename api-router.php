@@ -3,26 +3,26 @@ require_once './libs/Router.php';
 require_once './app/controllers/personage-api.controller.php';
 require_once './app/controllers/race-api.controller.php';
 require_once './app/controllers/auth-api.controller.php';
+require_once './app/constantes/constantes.php';
 
 
 // crea el router
 $router = new Router();
 
 // defina la tabla de ruteo
-$router->addRoute('personages', 'GET', 'PersonageApiController', 'getAll');
-$router->addRoute('personage/:ID', 'GET', 'PersonageApiController', 'get');
-$router->addRoute('personage/:ID', 'DELETE', 'PersonageApiController', 'delete');
-$router->addRoute('personage', 'POST', 'PersonageApiController', 'insert'); 
+$router->addRoute(PATH_PERSONAGES, ACTION_GET, PERSONAGE_API_CONTROLLER, GETALL);
+$router->addRoute(PATH_PERSONAGE_ID, ACTION_GET, PERSONAGE_API_CONTROLLER, GET);
+$router->addRoute(PATH_PERSONAGE_ID, ACTION_DELETE, PERSONAGE_API_CONTROLLER, DELETE);
+$router->addRoute(PATH_PERSONAGE_INSERT, ACTION_POST, PERSONAGE_API_CONTROLLER, INSERT); 
 
-$router->addRoute('races', 'GET', 'RaceApiController', 'getAll');
-$router->addRoute('race/:ID', 'GET', 'RaceApiController', 'get');
-$router->addRoute('race/:ID', 'DELETE', 'RaceApiController', 'delete');
-$router->addRoute('race', 'POST', 'RaceApiController', 'insert'); 
-
-$router->addRoute("auth/token", 'GET', 'AuthApiController', 'getToken');
-
-$router->setDefaultRoute("PersonageApiController", "showNotFoundPage");
-// ejecuta la ruta (sea cual sea)
-$router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
+$router->addRoute(PATH_RACES, ACTION_GET, RACE_API_CONTROLLER, GETALL);
+$router->addRoute(PATH_RACE_ID, ACTION_GET, RACE_API_CONTROLLER, GET);
+$router->addRoute(PATH_RACE_ID, ACTION_DELETE, RACE_API_CONTROLLER, DELETE);
+$router->addRoute(PATH_RACE_INSERT, ACTION_POST, RACE_API_CONTROLLER, INSERT); 
 
 //devolver token
+$router->addRoute(PATH_AUTH_TOKEN, ACTION_GET, AUTH_API_CONTROLLER, GETTOKEN);
+
+$router->setDefaultRoute(PERSONAGE_API_CONTROLLER, SETDEFAULTROUTER);
+// ejecuta la ruta (sea cual sea)
+$router->route($_GET[RESOURCE], $_SERVER[REQUEST_METHOD]);

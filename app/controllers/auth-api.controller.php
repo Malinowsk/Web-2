@@ -20,12 +20,12 @@ class AuthApiController extends ApiController {
         $basic = $this->helper->getAuthHeader();
     
         if(empty($basic)){
-            $this->view->response('No autorizado', 401);
+            $this->view->response(MSG_ERROR_NOT_AUTHORIZED, 401);
             return;
         }
         $basic = explode(" ",$basic); // ["Basic" "base64(user:pass)"]
-        if($basic[0]!="Basic"){
-            $this->view->response('La autenticación debe ser Basic', 401);
+        if($basic[0]!=BASIC){
+            $this->view->response(MSG_ERROR.BLANK_SPACE.BASIC, 401);
             return;
         }
 
@@ -40,22 +40,22 @@ class AuthApiController extends ApiController {
         if($record && $user == $record->email && password_verify($pass,$record->password)){
             //  crear un token
             $header = array(
-                'alg' => 'HS256',
-                'typ' => 'JWT'
+                ALG => HS256,
+                TYP => JWT
             );
             $payload = array(
-                'id' => "1",
-                'name' => "Juan",
-                'exp' => time()+3600
+                ID => ONE,
+                NAME => JUAN,
+                EXP => time()+3600
             );
             $header = base64url_encode(json_encode($header));
             $payload = base64url_encode(json_encode($payload));
-            $signature = hash_hmac('SHA256', "$header.$payload", "Clave1234", true);
+            $signature = hash_hmac(SHA256, "$header.$payload",KEY_SECRET, true);
             $signature = base64url_encode($signature);
             $token = "$header.$payload.$signature";
              $this->view->response($token);
         }else{
-            $this->view->response('No autorizado', 401);
+            $this->view->response(MSG_ERROR_NOT_AUTHORIZED, 401);
         }
     }
 

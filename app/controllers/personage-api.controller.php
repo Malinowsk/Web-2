@@ -8,25 +8,19 @@ class PersonageApiController extends TableApiController {
     public function __construct() {
 
         parent::__construct();
-
-        $this->columns=    ["id_personaje" =>  "id_personaje",
-                            "nombre_p"=>"nombre_p",
-                            "apellido"=>"apellido",
-                            "clase"=>"clase",
-                            "id_raza"=>"id_raza",
-                            "nombre_r"=>"nombre_r",
-                            "faccion"=>"faccion"];
+    
+        $this->columns=[PERSONAGE_COLUMN1,PERSONAGE_COLUMN2,PERSONAGE_COLUMN3,PERSONAGE_COLUMN4,PERSONAGE_COLUMN5,PERSONAGE_COLUMN6,PERSONAGE_COLUMN7];
         
         $this->model_personaje = new PersonageModel();
 
     }
 
     public function getAllFiltered($filter,$sort,$order,$pag,$limit){
-        return $this->model_personaje->getAllFiltered($filter,$sort,$order,$pag,$limit);
+        return $this->model_personaje->getAll($filter,$sort,$order,$pag,$limit);
     }
 
     public function getTupla($id){
-        return $this->model_personaje->getPersonage($id);
+        return $this->model_personaje->get($id);
     }
 
 
@@ -38,12 +32,12 @@ class PersonageApiController extends TableApiController {
 
     public function chekeo($Personage){
         if (empty($Personage->nombre_p) || empty($Personage->apellido) || empty($Personage->clase) || empty($Personage->id_raza)) {
-            $this->view->response("Complete los datos", 400);
+            $this->view->response(MSG_ERROR_INCOMPLETE_DATA, 400);
             die;
         } else {
-            $existRace=$this->model_race->getRace($Personage->id_raza);
+            $existRace=$this->model_race->get($Personage->id_raza);
             if(count($existRace)==0){
-                $this->view->response("La raza del personaje que desea ingresar no existe", 404);
+                $this->view->response(MSG_ERROR_RACE_NON_EXISTENT, 404);
                 die;
             }
         }

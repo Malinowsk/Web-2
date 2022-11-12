@@ -9,14 +9,9 @@ abstract class TableApiController extends ApiController
     protected $view;
     protected $helper;
 
-    private $data;
     protected $columns;
 
-    private $keywords = ["resource" => "resource",
-                        "sort"=>"resource",
-                        "order"=>"resource",
-                        "pag"=>"resource",
-                        "limit"=>"resource"];
+    private $keywords = [RESOURCE,SORT_FIELD,ADDRESS_ORDERING,PAGE,NUMBER_OF_ROWS];
 
     function __construct()
     {
@@ -27,73 +22,72 @@ abstract class TableApiController extends ApiController
     }
 
     function maching($var){
-        return isset($this->columns[$var]);
+        return In_array($var ,$this->columns);
     }
     
     function correctFilters(){
         foreach ($_GET as $clave=>$valor){
-            if(!isset($this->columns[$clave])&&!isset($this->keywords[$clave])){
+            if(!In_array($clave ,$this->columns)&&!In_array($clave ,$this->keywords)){
                 return False;}
         }
         return true;
     }
 
-
     function getDataToFilter(&$filter,&$sort,&$order,&$pag,&$limit){
 
         if(!$this->correctFilters()){
-            $this->view->response("El nombre de alguno de los filtros en la URL no es correcto", 404);
+            $this->view->response(MSG_FILTER_NAME_ERROR, 404);
             die;
         }
 
-        $filter = array_filter( $_GET, array($this,"maching"),ARRAY_FILTER_USE_KEY);
+        $filter = array_filter( $_GET, array($this,NOMBRE_FUNCION_MACHING),ARRAY_FILTER_USE_KEY);
         if(empty($filter)&&isset($filter))
             $filter=null;
         else
             if(count($filter)>1){
-                $this->view->response("no se puede filtrar por mas de un campo", 404);
+                $this->view->response(MSG_ERROR_FILTER_MORE_FIELDS, 404);
                 die;
             }
-
-        if(isset($_GET['sort']))
-            if(isset($this->columns[$_GET['sort']]))
-                $sort=$_GET['sort'];
+            
+        if(isset($_GET[SORT_FIELD]))
+            if(In_array($_GET[SORT_FIELD],$this->columns))
+                $sort=$_GET[SORT_FIELD];
             else{
-                $this->view->response("el campo por el que se quiere ordenar no existe en la tabla", 404);
+                $this->view->response(MSG_ERROR_SORT_NON_EXISTENT_FIELD, 404);
                 die;
             }
         else
             $sort=null;
 
-        if(isset($_GET['order'])){
-            $order=$_GET['order'];
-            if($order<>"desc" && $order<>"asc"){
-                $this->view->response("el valor de order es incorrecto", 404);
+        if(isset($_GET[ADDRESS_ORDERING])){
+            $order=$_GET[ADDRESS_ORDERING];
+            if($order<>DESCENDENTE && $order<>ASCENDENTE){
+                $this->view->response(MSG_ERROR_IN_THE_ORDER_ADDRESS, 404);
                 die;
             }
         }
         else
             $order=null;
         
-        if(isset($_GET['pag']))
-            if(is_numeric($_GET['pag']))
-                $pag=$_GET['pag'];
+        if(isset($_GET[PAGE]))
+            if(is_numeric($_GET[PAGE]))
+                $pag=$_GET[PAGE];
             else{
-                $this->view->response("el valor de página es incorrecto", 404);
+                $this->view->response(MSG_ERROR_PAGE_VALUE, 404);
                 die;
             }
         else
             $pag=null;
 
-        if(isset($_GET['limit']))
-            $limit=$_GET['limit'];
+        if(isset($_GET[NUMBER_OF_ROWS]))
+            $limit=$_GET[NUMBER_OF_ROWS];
         else
             $limit=null;
 
     }
 
     public function showNotFoundPage() {
-        $this->view->response("Url mal definida", 404);
+        $this->view->response(MSG_ERROR_WRONGLY_DEFINED_URL, 404);
     }
 
     
@@ -109,40 +103,37 @@ abstract class TableApiController extends ApiController
         
         $tuplas = $this->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($tuplas))
-        //            if(!empty($tuplas))
-        $this->view->response($tuplas);
-        //            else
-        //                $this->view->response("el contenido de la respuesta es vacio", 402);
+            $this->view->response($tuplas);
         else
-        $this->view->response("error del server", 500);
+            $this->view->response(MSG_ERROR_SERVER, 500);
     }
 
     
     public function get($params = null) {
         // obtengo el id del arreglo de params
 
-        $id = $params[':ID'];
+        $id = $params[IDENTIFICADOR];
         $tuplas = $this->getTupla($id);
 
         // si no existe devuelvo 404
         if ($tuplas)
             $this->view->response($tuplas);
         else 
-            $this->view->response("La tarea con el id=$id no existe", 404);
+            $this->view->response(MSG_ERROR_ID_UNDEFINED_PART1.$id.MSG_ERROR_ID_UNDEFINED_PART2, 404);
     }
     
     public function delete($params = null) {
 
         $this->isLoggedIn();
 
-        $id = $params[':ID'];
+        $id = $params[IDENTIFICADOR];
 
         $tuplas = $this->getTupla($id);
         if ($tuplas) {
             $this->deleteTupla($id);
             $this->view->response($tuplas);
         } else 
-            $this->view->response("La tarea con el id=$id no existe", 404);
+            $this->view->response(MSG_ERROR_ID_UNDEFINED_PART1.$id.MSG_ERROR_ID_UNDEFINED_PART2, 404);
     }
 
     public function insert() {
@@ -158,14 +149,14 @@ abstract class TableApiController extends ApiController
             $tupla = $this->getTupla($id);
             $this->view->response($tupla, 201);}
         else{
-            $this->view->response("No se pudo insertar la tupla", 500);
+            $this->view->response(MSG_ERROR_INSERT, 500);
         }
 
     }
 
     public function isLoggedIn(){
         if(!$this->helper->isLoggedIn()){
-            $this->view->response("No estás logeado", 401);   
+            $this->view->response(MSG_ERROR_NOT_LOGGED_IN, 401);   
             die;
         }
     }

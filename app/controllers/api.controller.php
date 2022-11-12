@@ -2,6 +2,7 @@
 
 require_once './app/views/api.view.php';
 require_once './app/helpers/auth-api.helper.php';
+require_once './app/constantes/constantes.php';
 
 abstract class ApiController
 {
@@ -13,7 +14,7 @@ abstract class ApiController
     {
         $this->view = new ApiView();
         $this->helper = new AuthApiHelper();
-        $this->data = file_get_contents('php://input');
+        $this->data = file_get_contents(PHP_INPUT);
     }
 
     function getData()
