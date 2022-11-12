@@ -112,7 +112,7 @@ define('PATH_PERSONAGE_INSERT','personage');
 define('PATH_PERSONAGES','personages');
 define('PATH_PERSONAGE_ID','personage/:ID');
 
-define('PATH_RACE_ID','personage/:ID');
+define('PATH_RACE_ID','race/:ID');
 define('PATH_RACES','races');
 define('PATH_RACE_INSERT','race');
 
