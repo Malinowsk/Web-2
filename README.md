@@ -17,7 +17,7 @@
     - [Borrado](#servicio-para-borrar-un-personajeitem)
 - [Tabla de Razas](#endpoints-generados-para-la-tabla-raza)
     - [Obtener todas](#devuelve-todos-las-razascategorias)
-        - [Ordenamiento](#ordenamiento)
+        - [Ordenamiento](#ordenamiento-1)
         - [Paginación](#paginación)
         - [Filtrado](#filtrado)
         - [Combinado](#Se-permite-cualquier-combinación)
