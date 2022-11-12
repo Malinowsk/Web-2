@@ -3,7 +3,18 @@
 ## API RESTful
 --------------------------------------------------------------------------------------------------------------------
 
-### Diagrama de clases:
+
+- [Diagrama de Clases](#diagrama-de-clases)
+- [Tabla Personaje](#endpoints-generados-para-la-tabla-personaje)
+    - [Getall](#devuelve-todos-los-personajesitems)
+    - [ordenamiento](#ordenamiento)
+    - [paginacion](#paginación)
+    - [filtrado](#filtrado)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+<h3 align="center">Diagrama de clases:</h3>
 
 <div align="center">
 <img src="diag.png"/>
