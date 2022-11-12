@@ -51,7 +51,6 @@ abstract class TableModel
     }
     
     abstract protected function delete($id);
-    
     abstract protected function sentenceSQLAll();
     abstract protected function sentenceSQLId();
     abstract protected function getClave($filter);

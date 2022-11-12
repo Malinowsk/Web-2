@@ -39,7 +39,7 @@
 <h3 align="center">Diagrama de clases de modelos</h3>
 
 <div align="center">
-<img src="Images/diag.png"/>
+<img src="Images/diagModel.png"/>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
