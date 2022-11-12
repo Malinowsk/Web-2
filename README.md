@@ -4,17 +4,27 @@
 --------------------------------------------------------------------------------------------------------------------
 
 
-- [Diagrama de Clases](#diagrama-de-clases)
-- [Tabla Personaje](#endpoints-generados-para-la-tabla-personaje)
-    - [Getall](#devuelve-todos-los-personajesitems)
-    - [ordenamiento](#ordenamiento)
-    - [paginacion](#paginación)
-    - [filtrado](#filtrado)
+- [Diagrama de Clases de Controladores](#diagrama-de-clases-de-controladores)
+- [Diagrama de Clases de modelos](#diagrama-de-clases-de-modelos)
+- [Tabla de Personajes](#endpoints-generados-para-la-tabla-personaje)
+    - [Obtener todos](#devuelve-todos-los-personajesitems)
+        - [Ordenamiento](#ordenamiento)
+        - [Paginación](#paginación)
+        - [Filtrado](#filtrado)
+        - [Combinado](#Se-permite-cualquier-combinación)
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h3 align="center">Diagrama de clases:</h3>
+<h3 align="center">Diagrama de clases de controladores</h3>
+
+<div align="center">
+<img src="diag.png"/>
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+<h3 align="center">Diagrama de clases de modelos</h3>
 
 <div align="center">
 <img src="diag.png"/>
