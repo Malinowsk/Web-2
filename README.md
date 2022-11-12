@@ -2,7 +2,7 @@
 
 ## API RESTful
 
-<h2 align="center">Indice</h2>
+<h2 align="center">Índice</h2>
 
 - [Diagrama de Clases de Controladores](#diagrama-de-clases-de-controladores)
 - [Diagrama de Clases de modelos](#diagrama-de-clases-de-modelos)
