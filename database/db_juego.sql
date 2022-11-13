@@ -48,7 +48,7 @@ INSERT INTO `personaje` (`id_personaje`, `nombre`, `apellido`, `clase`, `id_raza
 (4, 'Grom', 'Hellscream', 'Guerrero', 2),
 (5, 'Arthas', 'Menethil', 'Paladin', 4),
 (13, 'Sylvanas', 'Windrunner', 'Forestal Oscura', 3),
-(14, 'Cairne', 'Bloodhoof', 'Cazador', 7);
+(14, 'Cairne', 'Bloodhoof', 'Cazador', 7),
 (33, 'Uther', 'The Lightbringer', 'Caballero', 4),
 (34, 'Varian', 'Wrynn', 'Luchador', 4),
 (35, 'Queen', 'Azshara', 'Maga', 6),
