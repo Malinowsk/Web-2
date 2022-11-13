@@ -5,7 +5,6 @@ require_once './app/controllers/race-api.controller.php';
 require_once './app/controllers/auth-api.controller.php';
 require_once './app/constantes/constantes.php';
 
-
 // crea el router
 $router = new Router();
 

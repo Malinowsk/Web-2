@@ -175,7 +175,7 @@ Algunos Ejemplos:
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
-* POST ```  api/personage/:ID ```
+* DELETE ```  api/personage/:ID ```
 
 Algunos Ejemplos:
 
@@ -320,7 +320,7 @@ Algunos Ejemplos:
 
 Se envía la autenticación del tipo "Basic Auth" con los datos de:
 
-* Username ``` juanrago@gmail.com ```
+* Username ``` juanrago2015@gmail.com ```
 * Password ``` 12345 ```
 
 --------------------------------------------------------------------------------------------------------------------
