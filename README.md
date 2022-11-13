@@ -28,7 +28,7 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h3 align="center">Diagrama de clases de los controladores</h3>
+<h3 align="center">Diagrama de Clases de Los Controladores</h3>
 
 <div align="center">
 <img src="Images/diag.png"/>
@@ -36,7 +36,7 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h3 align="center">Diagrama de clases de los modelos</h3>
+<h3 align="center">Diagrama de Clases de Los Modelos</h3>
 
 <div align="center">
 <img src="Images/diagModel.png"/>
