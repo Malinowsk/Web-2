@@ -6,8 +6,6 @@ abstract class TableApiController extends ApiController
 {
 
     protected $model_race;
-    protected $view;
-    protected $helper;
 
     protected $columns;
 
