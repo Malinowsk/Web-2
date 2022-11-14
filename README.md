@@ -14,7 +14,7 @@
         - [Ordenamiento](#ordenamiento)
         - [Paginación](#paginación)
         - [Filtrado](#filtrado)
-        - [Combinado](#se-permite-cualquier-combinación-de-paginaci)
+        - [Combinado](#se-permite-cualquier-combinación-de-paginación-,-ordenamiento-y-filtrado-posible)
     - [Obtener por ID](#devuelve-un-personajeitem-determinado-por-un-id)
     - [Insertado](#servicio-para-agregar-un-personajeitem)
     - [Borrado](#servicio-para-borrar-un-personajeitem)
