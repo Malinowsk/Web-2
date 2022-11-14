@@ -13,14 +13,14 @@ class ApiView {
 
     private function _requestStatus($code){
         $status = array(
-          200 => OK,
-          201 => CREATED,
-          204 => PAYMENT_REQUIRED,
+          200 => OK, // se ejecuto correctamente
+          201 => CREATED, // se ejecuto correctamente el insert
+          204 => PAYMENT_REQUIRED,// no lo uso , pero es para indicar que la respuesta fue exitosa pero no posee contenido
           400 => BAD_REQUEST,
-          401 => UNAUTHORIZED,
-          403 => FORBIDDEN,
+          401 => UNAUTHORIZED, // el request no ah sido ejecutado porque carece de credenciales validas de autenticacion
+          403 => FORBIDDEN, // prohibido (se quien eres)
           404 => NOT_FOUND,
-          500 => INTERNAL_SERVER_ERROR
+          500 => INTERNAL_SERVER_ERROR // error del lado del servidor
         );
         return (isset($status[$code])) ? $status[$code] : $status[500];
       }

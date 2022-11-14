@@ -80,14 +80,14 @@ define("BEARER","Bearer");
 define("HTTP_AUTHORIZATION","HTTP_AUTHORIZATION");
 define("REDIRECT_HTTP_AUTHORIZATION","REDIRECT_HTTP_AUTHORIZATION");
 
-define("OK","OK");
-define("CREATED","Created");
-define("PAYMENT_REQUIRED","Payment Required");
+define("OK","OK"); // 200 todo ok en general
+define("CREATED","Created");// 201 para cuando se inserto correctamente
+define("PAYMENT_REQUIRED","Payment Required"); // todo ok pero no devuelve nada la respuesta
 define("BAD_REQUEST","Bad request");
 define("UNAUTHORIZED","Unauthorized");
 define("FORBIDDEN","Forbidden");
 define("NOT_FOUND","Not found");
-define("INTERNAL_SERVER_ERROR","Internal Server Error");
+define("INTERNAL_SERVER_ERROR","Internal Server Error"); // 500 error del servidor
 
 define("HEDER_HTTP","HTTP/1.1 ");
 define("CONTENT_TYPE","Content-Type: application/json");
