@@ -251,7 +251,7 @@ Algunos Ejemplos:
 * GET ```  api/races?nombre=Elfo ```
 * GET ```  api/races?faccion=Alianza ```
 
-**Aclaracion: no se puede filtrar por mas de un campo a la vez**
+**Aclaración: no se puede filtrar por más de un campo a la vez**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -311,13 +311,15 @@ Algunos Ejemplos:
 
 **se necesita enviar la autenticacion de token del tipo "bearer token" el cual se obtiene con GET api/auth/token* 
 
-* POST ```  api/race/:ID ```
+* DELETE ```  api/race/:ID ```
 
 Algunos Ejemplos:
 
 * DELETE ```  api/race/1 ```
 * DELETE ```  api/race/3 ```
 * DELETE ```  api/race/5 ```
+
+**Aclaración: Para el caso que la raza este vinculada con personajes, se aplica un borrado en cascada, dejando a criterio de quien usa la API, que lo tenga en cuenta y controle en caso de ser necesario**
 
 --------------------------------------------------------------------------------------------------------------------
 
