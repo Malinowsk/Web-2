@@ -119,6 +119,8 @@ Algunos Ejemplos:
 
 --------------------------------------------------------------------------------------------------------------------
 
+#### **Combinado**:
+
 **Se permite cualquier combinación de paginación , ordenamiento y filtrado posible**
 
 Algunos Ejemplos son:
@@ -252,6 +254,8 @@ Algunos Ejemplos:
 **Aclaracion: no se puede filtrar por mas de un campo a la vez**
 
 --------------------------------------------------------------------------------------------------------------------
+
+#### **Combinado**:
 
 **Se permite cualquier combinacion de paginación , ordenamiento y filtrado posible**
 
