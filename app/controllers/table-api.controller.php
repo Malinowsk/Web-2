@@ -101,7 +101,7 @@ abstract class TableApiController extends ApiController
         
         $tuplas = $this->getAllFiltered($filter,$sort,$order,$pag,$limit);
         if(isset($tuplas))
-            $this->view->response($tuplas);
+            $this->view->response($tuplas,200);
         else
             $this->view->response(MSG_ERROR_SERVER, 500);
     }
